@@ -32,4 +32,7 @@ pnpm install -D @vanilla-extract/vite-plugin
 
 # launch dev 
 pnx serve
+
+# launch prod
+pnx serve --configuration production
 ```

@@ -5,24 +5,11 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nrwl/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "compiler": "babel",
-        "outputPath": "dist/apps/trail-path-front",
-        "index": "apps/trail-path-front/index.html",
-        "baseHref": "/",
-        "main": "apps/trail-path-front/src/main.tsx",
-        "polyfills": "apps/trail-path-front/src/polyfills.ts",
-        "tsConfig": "apps/trail-path-front/tsconfig.app.json",
-        "assets": [
-          "apps/trail-path-front/src/favicon.ico",
-          "apps/trail-path-front/src/assets"
-        ],
-        "styles": ["apps/trail-path-front/src/styles.css"],
-        "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "outputPath": "dist/apps/trail-path-front"
       },
       "configurations": {
         "development": {
@@ -51,7 +38,7 @@
       "executor": "@nrwl/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "trail-path-front:build",
+        "buildTarget": "react-vite:build",
         "hmr": true
       },
       "configurations": {
