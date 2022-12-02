@@ -11,7 +11,7 @@
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/trail-path-front",
-        "index": "apps/trail-path-front/src/index.html",
+        "index": "apps/trail-path-front/index.html",
         "baseHref": "/",
         "main": "apps/trail-path-front/src/main.tsx",
         "polyfills": "apps/trail-path-front/src/polyfills.ts",
@@ -48,7 +48,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/webpack:dev-server",
+      "executor": "@nrwl/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "trail-path-front:build",
