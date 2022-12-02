@@ -1,12 +1,13 @@
-import Header from "./components/header";
+import Header from './components/header';
+import React from 'react';
+import Footer from './components/footer';
 
 export function App() {
   return (
     <>
-      <Header title="Trail Path"/>
-      <img src="favicon.ico" width="20" height="20" />
+      <Header title="Trail Path" />
+      <Footer />
     </>
-
   );
 }
 

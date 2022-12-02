@@ -55,7 +55,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/trail-path-front/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/trail-path-front/**/*.{ts,tsx,js,jsx}"],
+        "fix": true
       }
     },
     "test": {

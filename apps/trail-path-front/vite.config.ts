@@ -10,6 +10,6 @@ export default defineConfig({
       root: '../../',
       projects: ['tsconfig.base.json'],
     }),
-    vanillaExtractPlugin({})
+    vanillaExtractPlugin({}),
   ],
 });
