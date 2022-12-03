@@ -44,7 +44,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/trail-path-api/**/*.ts"]
+        "lintFilePatterns": ["apps/trail-path-api/**/*.ts"],
+        "fix": true
       }
     },
     "test": {

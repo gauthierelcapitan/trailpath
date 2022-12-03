@@ -42,4 +42,7 @@ pnx serve --configuration production
 
 # launch front / api
 pnx run-many --target=serve --projects=trail-path-front,trail-path-api
+
+# lint all
+pnx run-many --target=lint --projects=trail-path-front,trail-path-api
 ```
