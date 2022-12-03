@@ -39,7 +39,9 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "react-vite:build",
-        "hmr": true
+        "hmr": true,
+        "proxyConfig": "apps/trail-path-front/proxy.conf.json",
+        "port": 4200
       },
       "configurations": {
         "development": {

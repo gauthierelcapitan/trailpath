@@ -30,9 +30,16 @@ pnx g @nrwl/vite:init
 pnpm install -D @vitejs/plugin-react
 pnpm install -D @vanilla-extract/vite-plugin
 
+# create api
+pnpm install -D @nrwl/nest
+pnx g @nrwl/nest:app trail-path-api --frontendProject trail-path-front
+
 # launch dev 
 pnx serve
 
 # launch prod
 pnx serve --configuration production
+
+# launch front / api
+pnx run-many --target=serve --projects=trail-path-front,trail-path-api
 ```
