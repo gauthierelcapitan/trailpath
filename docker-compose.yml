@@ -1,0 +1,81 @@
+version: '3.9'
+
+services:
+  front:
+    container_name: trail-path-front
+    hostname: trail-path-front
+    image: trail-path-front
+    build:
+      context: .
+      dockerfile: ./apps/trail-path-front/Dockerfile
+      target: development
+    expose:
+      - 4200
+    networks:
+      - trail-path-network
+    depends_on:
+      - api
+    volumes:
+      - .:/app
+      - /app/node_modules
+    labels:
+      - "traefik.http.routers.front.rule=Host(`front.traefik.me`)"
+      - "traefik.http.routers.front-tls.tls.domains[0].main=front.traefik.me"
+      - "traefik.http.routers.front-tls.tls.domains[0].sans=front-*.traefik.me"
+    command: npx nx serve --host 0.0.0.0 --poll 2000
+
+  api:
+    container_name: trail-path-api
+    hostname: trail-path-api
+    image: trail-path-api
+    build:
+      context: .
+      dockerfile: ./apps/trail-path-api/Dockerfile
+      target: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    expose:
+      - 3333
+    labels:
+      - "traefik.http.routers.api.rule=Host(`api.traefik.me`)"
+      - "traefik.http.routers.api-tls.tls.domains[0].main=api.traefik.me"
+      - "traefik.http.routers.api-tls.tls.domains[0].sans=api-*.traefik.me"
+    command: npm run start:api
+    networks:
+      - trail-path-network
+
+  traefik:
+    container_name: trail-path-traefik
+    restart: unless-stopped
+    image: traefik:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    labels:
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+    volumes:
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./tls.yml:/etc/traefik/tls.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+      - certs:/etc/ssl/traefik
+    networks:
+      - trail-path-network
+
+  reverse-proxy-https-helper:
+    image: alpine
+    command: sh -c "cd /etc/ssl/traefik
+      && wget traefik.me/cert.pem -O cert.pem
+      && wget traefik.me/privkey.pem -O privkey.pem"
+    volumes:
+      - certs:/etc/ssl/traefik
+
+networks:
+  trail-path-network:
+    driver: bridge
+
+volumes:
+  certs:
+
+

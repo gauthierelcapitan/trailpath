@@ -5,7 +5,11 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "build:api": "npx nx build --project=trail-path-api",
+    "build:front": "npx nx build --project=trail-path-front",
+    "start:api": "nx serve --project=trail-path-api",
+    "start:front": "nx serve --project=trail-path-front"
   },
   "private": true,
   "dependencies": {
