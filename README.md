@@ -50,6 +50,9 @@ pnx run-many --target=lint --projects=trail-path-front,trail-path-api
 ### Launch dev
 ```shell
 docker-compose up
+
+# Sync dependencies
+docker cp $(docker-compose ps -q app):/app/node_modules ./
 ```
 
 App will be available at : [https://app.traefik.me]

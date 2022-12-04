@@ -1,13 +1,12 @@
-FROM node:18-alpine3.15 As development
+FROM node:lts-buster-slim AS development
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 COPY pnpm-lock.yaml ./
 
 RUN  npm install -g pnpm &&\
-     pnpm install minimist &&\
-  pnpm install
+     pnpm install
 
 COPY . .
 

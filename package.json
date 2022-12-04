@@ -13,8 +13,8 @@
     "test": "nx test",
     "build:api": "npx nx build --project=api",
     "build:app": "npx nx build --project=app",
-    "start:api": "nx serve --project=api",
-    "start:app": "nx serve --project=app"
+    "start:api": " npx nx build --project=api && nx serve --project=api",
+    "start:app": " npx nx build --project=app && nx serve --project=app"
   },
   "private": true,
   "dependencies": {
