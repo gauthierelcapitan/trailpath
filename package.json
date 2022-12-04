@@ -1,15 +1,20 @@
 {
   "name": "trail-path",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
+  "author": {
+    "name": "Gauthier Cart",
+    "email": "gauthier.cart@gmail.com",
+    "url": "https://gauthiercart.fr"
+  },
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "build:api": "npx nx build --project=trail-path-api",
-    "build:front": "npx nx build --project=trail-path-front",
-    "start:api": "nx serve --project=trail-path-api",
-    "start:front": "nx serve --project=trail-path-front"
+    "build:api": "npx nx build --project=api",
+    "build:app": "npx nx build --project=app",
+    "start:api": "nx serve --project=api",
+    "start:app": "nx serve --project=app"
   },
   "private": true,
   "dependencies": {

@@ -11,4 +11,4 @@ RUN  npm install -g pnpm &&\
 
 COPY . .
 
-RUN pnpm run build:front
+RUN pnpm run build:app

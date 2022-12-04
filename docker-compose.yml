@@ -1,13 +1,13 @@
 version: '3.9'
 
 services:
-  front:
-    container_name: trail-path-front
-    hostname: trail-path-front
-    image: trail-path-front
+  app:
+    container_name: trail_path_app
+    hostname: trail-path-app
+    image: trail-path-app
     build:
       context: .
-      dockerfile: ./apps/trail-path-front/Dockerfile
+      dockerfile: apps/app/Dockerfile
       target: development
     expose:
       - 4200
@@ -19,18 +19,18 @@ services:
       - .:/app
       - /app/node_modules
     labels:
-      - "traefik.http.routers.front.rule=Host(`front.traefik.me`)"
-      - "traefik.http.routers.front-tls.tls.domains[0].main=front.traefik.me"
-      - "traefik.http.routers.front-tls.tls.domains[0].sans=front-*.traefik.me"
+      - "traefik.http.routers.app.rule=Host(`app.traefik.me`)"
+      - "traefik.http.routers.app-tls.tls.domains[0].main=app.traefik.me"
+      - "traefik.http.routers.app-tls.tls.domains[0].sans=app-*.traefik.me"
     command: npx nx serve --host 0.0.0.0 --poll 2000
 
   api:
-    container_name: trail-path-api
+    container_name: trail_path_api
     hostname: trail-path-api
     image: trail-path-api
     build:
       context: .
-      dockerfile: ./apps/trail-path-api/Dockerfile
+      dockerfile: apps/api/Dockerfile
       target: development
     volumes:
       - .:/app
@@ -46,7 +46,7 @@ services:
       - trail-path-network
 
   traefik:
-    container_name: trail-path-traefik
+    container_name: trail_path_traefik
     restart: unless-stopped
     image: traefik:latest
     ports:
