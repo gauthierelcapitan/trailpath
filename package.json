@@ -8,13 +8,15 @@
     "url": "https://gauthiercart.fr"
   },
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test",
+    "start": "docker compose up",
+    "build": "docker compose up --build",
+    "sync": "docker cp $(docker-compose ps -q app):/app/node_modules ./",
+    "zsh:api": "docker-compose exec api zsh",
+    "zsh:app": "docker-compose exec app zsh",
     "build:api": "npx nx build --project=api",
     "build:app": "npx nx build --project=app",
-    "start:api": " npx nx build --project=api && nx serve --project=api",
-    "start:app": " npx nx build --project=app && nx serve --project=app"
+    "start:api": "npx nx serve --project=api",
+    "start:app": "npx nx serve --host 0.0.0.0 --poll 2000"
   },
   "private": true,
   "dependencies": {

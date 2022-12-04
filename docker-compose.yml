@@ -22,7 +22,7 @@ services:
       - "traefik.http.routers.app.rule=Host(`app.traefik.me`)"
       - "traefik.http.routers.app-tls.tls.domains[0].main=app.traefik.me"
       - "traefik.http.routers.app-tls.tls.domains[0].sans=app-*.traefik.me"
-    command: npx nx serve --host 0.0.0.0 --poll 2000
+    command: pnpm run start:app
 
   api:
     container_name: trail_path_api
@@ -41,7 +41,7 @@ services:
       - "traefik.http.routers.api.rule=Host(`api.traefik.me`)"
       - "traefik.http.routers.api-tls.tls.domains[0].main=api.traefik.me"
       - "traefik.http.routers.api-tls.tls.domains[0].sans=api-*.traefik.me"
-    command: npm run start:api
+    command: pnpm run start:api
     networks:
       - trail-path-network
 
