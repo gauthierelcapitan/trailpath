@@ -51,3 +51,6 @@ pnx run-many --target=lint --projects=trail-path-front,trail-path-api
 ```shell
 docker-compose up
 ```
+
+App will be available at : [https://app.traefik.me]
+Api will be available at : [https://api.traefik.me/api]
