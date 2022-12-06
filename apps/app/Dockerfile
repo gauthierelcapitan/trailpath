@@ -13,7 +13,7 @@ RUN npm install -g pnpm
 COPY .npmrc package.json pnpm-*.yaml ./
 
 RUN pnpm config set store-dir /pnpm-store
-RUN pnpm install --store /pnpm-store
+RUN pnpm install --frozen-lockfile --store /pnpm-store
 
 COPY . .
 
