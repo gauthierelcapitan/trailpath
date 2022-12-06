@@ -2,15 +2,19 @@ FROM node:lts-buster-slim AS development
 
 WORKDIR /app
 
-COPY package.json ./
-COPY pnpm-lock.yaml ./
+RUN mkdir -p /pnpm-store
+VOLUME /pnpm-store
 
 RUN apt-get update && apt-get install -y wget
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.3/zsh-in-docker.sh)"
 
-RUN npm install -g pnpm && pnpm install
+RUN npm install -g pnpm
+
+COPY .npmrc package.json pnpm-*.yaml ./
+
+RUN pnpm config set store-dir /pnpm-store
+RUN pnpm install --store /pnpm-store
 
 COPY . .
 
 RUN pnpm run build:api
-
