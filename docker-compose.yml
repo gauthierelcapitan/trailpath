@@ -43,7 +43,7 @@ services:
       - "traefik.http.routers.api.rule=Host(`api.traefik.me`)"
       - "traefik.http.routers.api-tls.tls.domains[0].main=api.traefik.me"
       - "traefik.http.routers.api-tls.tls.domains[0].sans=api-*.traefik.me"
-    command: pnpm run start:api
+    command: pnpm run build:api && pnpm run start:api
     networks:
       - trail-path-network
 
