@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import ViteTsConfigPathsPlugin from 'vite-tsconfig-paths';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { VitePluginFonts } from 'vite-plugin-fonts';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   plugins: [
@@ -36,6 +37,7 @@ export default defineConfig({
         injectTo: 'head-prepend',
       },
     }),
+    tsconfigPaths(),
     vanillaExtractPlugin({}),
   ],
 });
