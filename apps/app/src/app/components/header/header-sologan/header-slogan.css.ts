@@ -3,7 +3,7 @@ import {
   glassBackground,
   glassBackgroundHover,
   theme,
-} from '../../../../theme.css';
+} from '@trailpath/theme.css';
 
 export const wrapper = style([
   glassBackground,

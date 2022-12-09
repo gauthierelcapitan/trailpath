@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme } from '../../../theme.css';
+import { theme } from '@trailpath/theme.css';
 
 interface LogoProps {
   width?: number;

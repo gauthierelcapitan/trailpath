@@ -1,7 +1,7 @@
 import React from 'react';
 import { overlayInner, overlay } from './landing-overlay.css';
 import Logo from '../logo/logo';
-import { theme } from '../../../theme.css';
+import { theme } from '@trailpath/theme.css';
 
 export function LandingOverlay() {
   return (

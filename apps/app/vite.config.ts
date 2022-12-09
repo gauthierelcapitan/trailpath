@@ -37,7 +37,7 @@ export default defineConfig({
         injectTo: 'head-prepend',
       },
     }),
-    tsconfigPaths(),
+    tsconfigPaths({ projects: ['../../tsconfig.base.json'] }),
     vanillaExtractPlugin({}),
   ],
 });

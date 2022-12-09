@@ -16,7 +16,11 @@
     "strict": true,
     "target": "ESNext",
     "types": ["vite/client"],
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "baseUrl": "./",
+    "paths": {
+      "@trailpath/*": ["src/*"],
+    }
   },
   "files": [],
   "include": [],
