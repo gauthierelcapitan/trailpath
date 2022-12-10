@@ -40,7 +40,6 @@
       "options": {
         "buildTarget": "react-vite:build",
         "hmr": true,
-        "proxyConfig": "apps/app/proxy.conf.json",
         "port": 4200
       },
       "configurations": {

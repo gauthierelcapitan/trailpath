@@ -44,7 +44,7 @@ pnx serve --configuration production
 pnx run-many --target=serve --projects=trail-path-front,trail-path-api
 
 # lint all
-pnx run-many --target=lint --projects=trail-path-front,trail-path-api
+pnx run-many --target=lint --projects=app,api
 ```
 
 ### Launch dev
@@ -57,3 +57,7 @@ docker cp $(docker-compose ps -q app):/app/node_modules ./
 
 App will be available at : [https://app.traefik.me]
 Api will be available at : [https://api.traefik.me/api]
+
+
+https://dev.to/jonlauridsen/exploring-the-typescript-monorepo-a-practical-hands-on-adventure-your-help-is-needed-2ggb
+https://github.com/gaggle/exploring-the-monorepo/tree/attempt-perfect-docker

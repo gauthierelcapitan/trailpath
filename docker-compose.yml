@@ -1,29 +1,6 @@
 version: '3.9'
 
 services:
-  app:
-    container_name: trail_path_app
-    hostname: trail-path-app
-    image: trail-path-app
-    build:
-      context: .
-      dockerfile: apps/app/Dockerfile
-      target: development
-    expose:
-      - 4200
-    networks:
-      - trail-path-network
-    depends_on:
-      - api
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - dist:/app/dist
-    labels:
-      - "traefik.http.routers.app.rule=Host(`app.traefik.me`)"
-      - "traefik.http.routers.app-tls.tls.domains[0].main=app.traefik.me"
-      - "traefik.http.routers.app-tls.tls.domains[0].sans=app-*.traefik.me"
-    command: pnpm run start:app
 
   api:
     container_name: trail_path_api
@@ -43,9 +20,42 @@ services:
       - "traefik.http.routers.api.rule=Host(`api.traefik.me`)"
       - "traefik.http.routers.api-tls.tls.domains[0].main=api.traefik.me"
       - "traefik.http.routers.api-tls.tls.domains[0].sans=api-*.traefik.me"
-    command: pnpm run build:api &&  pnpm run start:api
+    command: pnpm run start:api
+    healthcheck:
+      test: curl --fail http://localhost:3333/api/health || exit 1
+      interval: 5s
+      retries: 20
+      start_period: 5s
+      timeout: 10s
     networks:
       - trail-path-network
+    restart: unless-stopped
+
+  app:
+    container_name: trail_path_app
+    hostname: trail-path-app
+    image: trail-path-app
+    build:
+      context: .
+      dockerfile: apps/app/Dockerfile
+      target: development
+    expose:
+      - 4200
+    networks:
+      - trail-path-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - dist:/app/dist
+    labels:
+      - "traefik.http.routers.app.rule=Host(`app.traefik.me`)"
+      - "traefik.http.routers.app-tls.tls.domains[0].main=app.traefik.me"
+      - "traefik.http.routers.app-tls.tls.domains[0].sans=app-*.traefik.me"
+    command: pnpm run start:app
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
 
   traefik:
     container_name: trail_path_traefik
