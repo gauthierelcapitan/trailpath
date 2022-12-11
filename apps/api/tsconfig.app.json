@@ -9,6 +9,7 @@
     "baseUrl": "./",
     "paths": {
       "@trailpath/api/*": ["src/*"],
+      "@trailpath/api-interface/*": ["../../libs/api-interface/*"]
     }
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],

@@ -25,7 +25,7 @@ export class ExceptionsFilter extends BaseExceptionFilter {
       const queryString = JSON.stringify(query);
 
       this.logger.warn(
-        `${id} ${method} ${url} ${queryString} 404 0ms ${userAgent} ${ip}`,
+        `${method} ${url} ${queryString} 404 0ms ${userAgent} ${ip} ${id}`,
       );
     }
 

@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@trailpath/*": ["apps/app/src/*"],
-      "@trailpath/api/*": ["apps/api/src/*"]
+      "@trailpath/api/*": ["apps/api/src/*"],
+      "@trailpath/api-interface/*": ["libs/api-interface/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

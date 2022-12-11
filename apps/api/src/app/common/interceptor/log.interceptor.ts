@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { GLOBAL_PREFIX } from '../../../main';
+import { GLOBAL_PREFIX } from '@trailpath/api/main';
 
 @Injectable()
 export class LogInterceptor implements NestInterceptor {
@@ -48,6 +48,6 @@ export class LogInterceptor implements NestInterceptor {
 
     const time = Math.round(performance.now() - startTimestamp);
 
-    return `${id} ${method} ${url} ${queryString} ${statusCode} ${time}ms ${userAgent} ${ip} ${className}.${handlerName}`;
+    return `${method} ${url} ${queryString} ${statusCode} ${time}ms ${userAgent} ${ip} ${id} ${className}.${handlerName}`;
   }
 }
