@@ -59,9 +59,10 @@ class ColorPalette {
 
   randomColor(): number {
     // Pick a random color
-    return this.colorChoices[
-      ~~random(0, this.colorChoices.length)
-    ].replace('#', '0x') as unknown as number;
+    return this.colorChoices[~~random(0, this.colorChoices.length)].replace(
+      '#',
+      '0x',
+    ) as unknown as number;
   }
 
   setCustomProperties() {

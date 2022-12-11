@@ -22,7 +22,7 @@ services:
       - "traefik.http.routers.api-tls.tls.domains[0].sans=api-*.traefik.me"
     command: pnpm run start:api
     healthcheck:
-      test: curl --fail http://localhost:3333/api/health || exit 1
+      test: curl -f http://localhost:3333/api/health || exit 1
       interval: 5s
       retries: 20
       start_period: 5s

@@ -55,6 +55,3 @@ export function OrbBackground() {
 }
 
 export default OrbBackground;
-
-
-

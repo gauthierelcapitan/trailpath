@@ -45,6 +45,8 @@ pnx run-many --target=serve --projects=trail-path-front,trail-path-api
 
 # lint all
 pnx run-many --target=lint --projects=app,api
+
+pnpm i --frozen-lockfile
 ```
 
 ### Launch dev
