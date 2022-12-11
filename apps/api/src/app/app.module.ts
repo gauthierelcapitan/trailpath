@@ -1,11 +1,11 @@
 import { Logger, Module } from '@nestjs/common';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { HealthModule } from './health/health.module';
+import { AppController } from '@trailpath/api/app/app.controller';
+import { AppService } from '@trailpath/api/app/app.service';
+import { HealthModule } from '@trailpath/api/app/health/health.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { LogInterceptor } from './common/interceptor/log.interceptor';
-import { ExceptionsFilter } from './common/filter/exceptions.filter';
+import { LogInterceptor } from '@trailpath/api/app/common/interceptor/log.interceptor';
+import { ExceptionsFilter } from '@trailpath/api/app/common/filter/exceptions.filter';
 
 @Module({
   imports: [HealthModule],

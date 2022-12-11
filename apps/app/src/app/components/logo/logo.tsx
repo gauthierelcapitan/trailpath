@@ -22,7 +22,7 @@ export function Logo({
     >
       <defs>
         <linearGradient id="gradient1" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FD0D7A" />
+          <stop offset="0%" stopColor="#fd0d79" />
           <stop offset="35%" stopColor={color} />
           <stop offset="100%" stopColor={color} />
         </linearGradient>

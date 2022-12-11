@@ -15,7 +15,7 @@
           "error",
           {
             "enforceBuildableLibDependency": true,
-            "allow": [],
+            "allow": ["@trailpath/**"],
             "depConstraints": [
               {
                 "sourceTag": "*",

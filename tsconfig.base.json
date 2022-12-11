@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@trailpath/*": ["apps/app/src/*"]
+      "@trailpath/*": ["apps/app/src/*"],
+      "@trailpath/api/*": ["apps/api/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
