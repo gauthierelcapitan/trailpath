@@ -15,9 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@trail-path/api-interface": ["libs/api-interface/src/index.ts"],
       "@trailpath/*": ["apps/app/src/*"],
-      "@trailpath/api/*": ["apps/api/src/*"],
-      "@trailpath/api-interface/*": ["libs/api-interface/*"]
+      "@trailpath/api-interface/*": ["libs/api-interface/src/lib/*"],
+      "@trailpath/api/*": ["apps/api/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
