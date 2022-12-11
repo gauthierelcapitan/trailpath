@@ -8,12 +8,13 @@
     "url": "https://gauthiercart.fr"
   },
   "scripts": {
-    "start": "docker compose up",
-    "build": "docker compose up --build",
-    "sync": "docker cp $(docker-compose ps -q app):/app/node_modules ./",
+    "start": "docker-compose up",
+    "build": "docker-compose up --build",
     "lint": "docker-compose exec api pnpm nx run-many --target=lint",
     "zsh:api": "docker-compose exec api zsh",
     "zsh:app": "docker-compose exec app zsh",
+    "test": "docker-compose exec api pnpm jest --verbose",
+    "coverage": "docker-compose exec api pnpm jest --coverage",
     "build:api": "pnpm nx build --project=api",
     "build:app": "pnpm nx build --project=app",
     "start:api": "pnpm nx serve --project=api",

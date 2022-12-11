@@ -1,4 +1,11 @@
-import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  NotFoundException,
+  Param,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrackService } from '@trailpath/api/app/track/track.service';
 import { TrackView } from '@trailpath/api/app/track/view/track.view';
@@ -20,7 +27,13 @@ export class TrackController {
     type: TrackView,
   })
   @HttpCode(HttpStatus.OK)
-  get(@Param('id') id: string): TrackView {
-    return this.trackService.get(id);
+  async get(@Param('id') id: string): Promise<TrackView> {
+    const track = await this.trackService.get(id);
+
+    if (!track) {
+      throw new NotFoundException(`Track with id ${id} not found.`);
+    }
+
+    return track;
   }
 }

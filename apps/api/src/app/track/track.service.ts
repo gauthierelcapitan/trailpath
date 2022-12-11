@@ -9,7 +9,7 @@ export class TrackService {
     return uuidv4();
   }
 
-  get(id: string) {
+  async get(id: string): Promise<TrackView> {
     const geoJson: GeoJSON = {
       type: 'LineString',
       coordinates: [],
