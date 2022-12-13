@@ -1,8 +1,8 @@
 import {
-  Catch,
   ArgumentsHost,
-  NotFoundException,
+  Catch,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { FastifyRequest } from 'fastify';

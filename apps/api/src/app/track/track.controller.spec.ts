@@ -1,8 +1,8 @@
+import { HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { TrackController } from '@trailpath/api/app/track/track.controller';
 import { TrackService } from '@trailpath/api/app/track/track.service';
 import { TrackView } from '@trailpath/api/app/track/view/track.view';
-import { HttpException, HttpStatus } from '@nestjs/common';
 
 describe('TrackController', () => {
   let trackController: TrackController;

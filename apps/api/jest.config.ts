@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'trail-path-api',
+  displayName: 'api',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,7 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/trail-path-api',
+  coverageDirectory: '../../coverage/apps/api',
 };
+
+

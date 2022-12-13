@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { HealthCheck, HealthCheckResult } from '@nestjs/terminus';
 import { CONTROLLER_HEALTH } from '@trailpath/api/app/constant/controller.constant';
-import { ApiTags } from '@nestjs/swagger';
 import { SWAGGER_TAG_HEALTH } from '@trailpath/api/app/constant/swagger.constant';
 
 @Controller(CONTROLLER_HEALTH)

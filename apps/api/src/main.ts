@@ -4,18 +4,18 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-
-import { AppModule } from './app/app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { GLOBAL_PREFIX } from '@trailpath/api/app/constant/global.constant';
 import {
   SWAGGER_API_PATH,
   SWAGGER_TAG_HEALTH,
   SWAGGER_TAG_TRACK,
 } from '@trailpath/api/app/constant/swagger.constant';
 
-export const GLOBAL_PREFIX = 'api';
+import { AppModule } from './app/app.module';
 
 async function bootstrap() {
+  // noinspection ES6RedundantAwait,TypeScriptValidateJSTypes
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),

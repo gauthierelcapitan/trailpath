@@ -10,7 +10,7 @@
     "paths": {
       "@trailpath/api/*": ["src/*"],
       "@trailpath/api-interface/*": ["../../libs/api-interface/src/lib/*"],
-    }
+    },
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]

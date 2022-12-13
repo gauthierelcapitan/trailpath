@@ -1,11 +1,16 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx", "@typescript-eslint/eslint-plugin"],
+  "plugins": ["@nrwl/nx", "@typescript-eslint/eslint-plugin",
+    "simple-import-sort",
+    "unused-imports",
+    "typescript-sort-keys"
+  ],
   "extends": ["eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:typescript-sort-keys/recommended"
   ],
   "overrides": [
     {
@@ -23,7 +28,12 @@
               }
             ]
           }
-        ]
+        ],
+        "sort-imports": "off",
+        "import/order": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "unused-imports/no-unused-imports": "error"
       }
     },
     {

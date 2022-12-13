@@ -7,10 +7,10 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { TrackService } from '@trailpath/api/app/track/track.service';
-import { TrackView } from '@trailpath/api/app/track/view/track.view';
 import { CONTROLLER_TRACK } from '@trailpath/api/app/constant/controller.constant';
 import { SWAGGER_TAG_TRACK } from '@trailpath/api/app/constant/swagger.constant';
+import { TrackService } from '@trailpath/api/app/track/track.service';
+import { TrackView } from '@trailpath/api/app/track/view/track.view';
 
 @Controller(CONTROLLER_TRACK)
 @ApiTags(SWAGGER_TAG_TRACK)

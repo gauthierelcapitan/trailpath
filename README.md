@@ -63,3 +63,5 @@ Api will be available at : [https://api.traefik.me/api]
 
 https://dev.to/jonlauridsen/exploring-the-typescript-monorepo-a-practical-hands-on-adventure-your-help-is-needed-2ggb
 https://github.com/gaggle/exploring-the-monorepo/tree/attempt-perfect-docker
+
+pnpx nx generate @nrwl/workspace:lib api-interface

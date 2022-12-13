@@ -1,14 +1,14 @@
 import {
-  Injectable,
-  NestInterceptor,
-  ExecutionContext,
   CallHandler,
+  ExecutionContext,
+  Injectable,
   Logger,
+  NestInterceptor,
 } from '@nestjs/common';
+import { GLOBAL_PREFIX } from '@trailpath/api/app/constant/global.constant';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { GLOBAL_PREFIX } from '@trailpath/api/main';
 
 @Injectable()
 export class LogInterceptor implements NestInterceptor {
