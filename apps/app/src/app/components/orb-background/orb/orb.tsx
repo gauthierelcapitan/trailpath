@@ -1,11 +1,11 @@
-import * as PIXI from 'pixi.js';
-import debounce from 'debounce';
-import { createNoise2D } from 'simplex-noise';
-import { OrbBoundInterface } from './orb.interface';
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { random, map } from '@georgedoescode/generative-utils';
+import { map, random } from '@georgedoescode/generative-utils';
+import debounce from 'debounce';
+import * as PIXI from 'pixi.js';
+import { createNoise2D } from 'simplex-noise';
+
+import { OrbBoundInterface } from './orb.interface';
 
 const noise2D = createNoise2D();
 

@@ -5,12 +5,12 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { GLOBAL_PREFIX } from '@trailpath/api/app/constant/global.constant';
+import { GLOBAL_PREFIX } from '@trailpath/api/app/common/constant/global.constant';
 import {
   SWAGGER_API_PATH,
   SWAGGER_TAG_HEALTH,
   SWAGGER_TAG_TRACK,
-} from '@trailpath/api/app/constant/swagger.constant';
+} from '@trailpath/api/app/common/constant/swagger.constant';
 
 import { AppModule } from './app/app.module';
 

@@ -1,11 +1,11 @@
-import { Container, Gradient, SVG } from '@svgdotjs/svg.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { random, map, spline } from '@georgedoescode/generative-utils';
-import * as tinycolor from 'tinycolor2';
-import { canvas, canvasWrapper } from './wave-background.css';
-
+import { map, random, spline } from '@georgedoescode/generative-utils';
+import { Container, Gradient, SVG } from '@svgdotjs/svg.js';
 import React, { useEffect, useRef } from 'react';
+import * as tinycolor from 'tinycolor2';
+
+import { canvas, canvasWrapper } from './wave-background.css';
 
 function lerp(v0: number, v1: number, t: number): number {
   return v0 * (1 - t) + v1 * t;

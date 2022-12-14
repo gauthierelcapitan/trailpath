@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import * as PIXI from 'pixi.js';
 import { KawaseBlurFilter } from '@pixi/filter-kawase-blur';
-import ColorPalette from './color-palette/color-palette';
+import * as PIXI from 'pixi.js';
 import { ICanvas } from 'pixi.js';
+import React, { useEffect, useRef } from 'react';
+
+import ColorPalette from './color-palette/color-palette';
 import Orb from './orb/orb';
 import { orbCanvas } from './orb-background.css';
 

@@ -1,5 +1,6 @@
-import { header } from './header.css';
 import React from 'react';
+
+import { header } from './header.css';
 import HeaderLogo from './header-logo/header-logo';
 import HeaderSlogan from './header-sologan/header-slogan';
 

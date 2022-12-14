@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css';
 import { glassBackground } from '@trailpath/theme.css';
+import { style } from '@vanilla-extract/css';
 
 export const overlay = style([
   glassBackground,

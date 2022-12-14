@@ -1,6 +1,7 @@
-import { wrapper } from './header-logo.css';
-import React from 'react';
 import Logo from '@trailpath/app/components/logo/logo';
+import React from 'react';
+
+import { wrapper } from './header-logo.css';
 
 export function HeaderLogo() {
   return (

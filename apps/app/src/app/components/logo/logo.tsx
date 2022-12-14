@@ -1,10 +1,10 @@
-import React from 'react';
 import { theme } from '@trailpath/theme.css';
+import React from 'react';
 
 interface LogoProps {
-  width?: number;
-  height?: number;
   color?: string;
+  height?: number;
+  width?: number;
 }
 
 export function Logo({

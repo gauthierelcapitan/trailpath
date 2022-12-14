@@ -1,7 +1,8 @@
-import React from 'react';
-import { overlayInner, overlay } from './landing-overlay.css';
-import Logo from '../logo/logo';
 import { theme } from '@trailpath/theme.css';
+import React from 'react';
+
+import Logo from '../logo/logo';
+import { overlay, overlayInner } from './landing-overlay.css';
 
 export function LandingOverlay() {
   return (

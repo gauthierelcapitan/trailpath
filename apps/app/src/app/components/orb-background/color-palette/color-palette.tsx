@@ -1,7 +1,7 @@
-import hsl from 'hsl-to-hex';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { random } from '@georgedoescode/generative-utils';
+import hsl from 'hsl-to-hex';
 
 /**
  * ColorPalette class

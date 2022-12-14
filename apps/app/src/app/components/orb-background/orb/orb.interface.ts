@@ -1,10 +1,10 @@
 export interface OrbBoundInterface {
   x: {
-    min: number;
     max: number;
+    min: number;
   };
   y: {
-    min: number;
     max: number;
+    min: number;
   };
 }
