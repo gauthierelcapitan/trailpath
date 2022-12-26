@@ -1,0 +1,54 @@
+diff --git a/index.js b/index.js
+index cf2866d01ac8481450aad586f06d206cb6634e16..4991b4d38e542fc56237353d44e94e193a712c28 100644
+--- a/index.js
++++ b/index.js
+@@ -46,18 +46,11 @@ function togpx( geojson, options ) {
+   }
+   function get_feature_description(props) {
+     // constructs a description for a given feature
+-    // uses a nested `tags` object or the feature's `properties` if present
+-    // and then concatenates all properties to construct a description.
++    // patched to get only desc 
+     if (!props) return "";
+-    if (typeof props.tags === "object")
+-      return get_feature_description(props.tags);
+-    var res = "";
+-    for (var k in props) {
+-      if (typeof props[k] === "object")
+-        continue;
+-      res += k+"="+props[k]+"\n";
+-    }
+-    return res.substr(0,res.length-1);
++    if (props.desc)
++      return props.desc;
++    return "";	 
+   }
+   function get_feature_coord_times(feature) {
+     if (!feature.properties) return null;
+diff --git a/togpx.js b/togpx.js
+index c1e8bbd4793738371cf3c02e77195ba85b3b3a3a..df91616a27c7d68be14b01b0c45753314c510d8e 100644
+--- a/togpx.js
++++ b/togpx.js
+@@ -47,18 +47,11 @@ function togpx( geojson, options ) {
+   }
+   function get_feature_description(props) {
+     // constructs a description for a given feature
+-    // uses a nested `tags` object or the feature's `properties` if present
+-    // and then concatenates all properties to construct a description.
++    // patched to get only desc 
+     if (!props) return "";
+-    if (typeof props.tags === "object")
+-      return get_feature_description(props.tags);
+-    var res = "";
+-    for (var k in props) {
+-      if (typeof props[k] === "object")
+-        continue;
+-      res += k+"="+props[k]+"\n";
+-    }
+-    return res.substr(0,res.length-1);
++    if (props.desc)
++      return props.desc;
++    return "";	  
+   }
+   function get_feature_coord_times(feature) {
+     if (!feature.properties) return null;

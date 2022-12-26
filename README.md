@@ -65,3 +65,13 @@ https://dev.to/jonlauridsen/exploring-the-typescript-monorepo-a-practical-hands-
 https://github.com/gaggle/exploring-the-monorepo/tree/attempt-perfect-docker
 
 pnpx nx generate @nrwl/workspace:lib api-interface
+
+
+pnpm nx run gpx-distance:test --output-style=static
+pnpm nx run gpx-distance:lint 
+
+
+
+https://gitlab.com/sbrl/line-simplification/-/blob/master/simplify_line.js
+
+https://gpstraces.net/comparaison-douglas-peucker-vs-visvalingam-whyatt

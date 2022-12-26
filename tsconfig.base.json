@@ -16,6 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@trail-path/api-interface": ["libs/api-interface/src/index.ts"],
+      "@trail-path/gpx-distance": ["libs/gpx-distance/src/index.ts"],
+      "@trail-path/gpx-track": ["libs/gpx-track/src/index.ts"],
+      "@trail-path/gpx-resample": ["libs/gpx-resample/src/index.ts"],
+      "@trail-path/gpx-shared": ["libs/gpx-shared/index.ts"],
       "@trailpath/*": ["apps/app/src/*"],
       "@trailpath/api-interface/*": ["libs/api-interface/src/lib/*"],
       "@trailpath/api/*": ["apps/api/src/*"]
