@@ -10,10 +10,9 @@ import { Triangle } from './triangle.interface';
  * Code inspired by https://gist.github.com/msbarry/9152218
  **/
 export class VisvalingamWhyatt implements GpxResampleAbstract {
-
   heap: Heap = new Heap();
 
-  resample(coordinates: Position[], pointsToKeep: number): Position[] {
+  resample(coordinates: Position[], positionsToKeep: number): Position[] {
     let maxArea = 0;
     let triangle: Triangle;
     const triangles: Triangle[] = [];
@@ -72,8 +71,8 @@ export class VisvalingamWhyatt implements GpxResampleAbstract {
       return b - a;
     });
 
-    return points.filter(function(d) {
-      return d[2] > weights[pointsToKeep];
+    return points.filter(function (d) {
+      return d[2] > weights[positionsToKeep];
     });
   }
 

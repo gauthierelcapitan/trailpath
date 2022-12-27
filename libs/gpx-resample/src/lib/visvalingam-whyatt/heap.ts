@@ -60,8 +60,8 @@ export class Heap {
       let down = index;
       let child = this.array[down];
       if (left < this.array.length && this.compare(this.array[left], child) < 0)
-        down = left
-        child = this.array[left];
+        down = left;
+      child = this.array[left];
       if (
         right < this.array.length &&
         this.compare(this.array[right], child) < 0
