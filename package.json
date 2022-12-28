@@ -9,6 +9,8 @@
   },
   "scripts": {
     "start": "docker-compose up",
+    "stop": "docker-compose stop",
+    "status": "docker-compose ps",
     "build": "docker-compose up --build",
     "lint": "docker-compose exec api pnpm nx run-many --all --target=lint",
     "zsh:api": "docker-compose exec api zsh",

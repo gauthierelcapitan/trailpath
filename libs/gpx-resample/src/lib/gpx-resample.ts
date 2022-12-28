@@ -1,4 +1,4 @@
-import { GpxDistanceMethodEnum, length } from '@trail-path/gpx-distance';
+import { GpxDistanceMethodEnum, length } from '@trailpath/gpx-distance';
 import { Feature, LineString } from 'geojson';
 
 import { GpxResampleAbstract } from './gpx-resample.abstract';

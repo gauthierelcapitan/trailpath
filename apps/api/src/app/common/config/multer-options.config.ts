@@ -1,14 +1,22 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { MimeExtEnum } from '@trailpath/api/app/common/enum/mime-ext.enum';
+import { UploadedFileInterface } from '@trailpath/api/app/common/interface/uploaded-file.interface';
+import { FastifyRequest } from 'fastify';
+import { FileFilterCallback } from 'multer';
 import { extname } from 'path';
 
 export const multerOptions = (extNames: MimeExtEnum[]) => {
+  // noinspection JSUnusedGlobalSymbols
   return {
     limits: {
       // Limit size to 10M
       fileSize: 1048576 * 10,
     },
-    fileFilter: (req: any, file: any, cb: any) => {
+    fileFilter: (
+      req: FastifyRequest,
+      file: UploadedFileInterface,
+      cb: FileFilterCallback,
+    ) => {
       if (
         file === null ||
         extNames

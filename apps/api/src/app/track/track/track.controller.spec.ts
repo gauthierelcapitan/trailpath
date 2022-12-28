@@ -1,8 +1,8 @@
 import { HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { TrackController } from '@trailpath/api/app/track/track.controller';
-import { TrackService } from '@trailpath/api/app/track/track.service';
-import { TrackView } from '@trailpath/api/app/track/view/track.view';
+import { TrackController } from '@trailpath/api/app/track/track/track.controller';
+import { TrackService } from '@trailpath/api/app/track/track/track.service';
+import { TrackView } from '@trailpath/api/app/track/track/view/track.view';
 
 describe('TrackController', () => {
   let trackController: TrackController;
@@ -30,9 +30,18 @@ describe('TrackController', () => {
       const result: TrackView = {
         id: 'f5054664-91a0-4579-a856-14efad346441',
         filename: 'my-track.gpx',
-        geojson: {
-          type: 'LineString',
-          coordinates: [],
+        track: {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            coordinates: [],
+            type: 'LineString',
+          },
+        },
+        points: [],
+        metadata: {
+          desc: '',
+          name: '',
         },
       };
 

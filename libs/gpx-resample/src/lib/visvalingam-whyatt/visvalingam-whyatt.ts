@@ -37,8 +37,6 @@ export class VisvalingamWhyatt implements GpxResampleAbstract {
       triangle.next = triangles[i + 1];
     }
 
-    //console.log('triangle', triangles);
-
     while ((triangle = this.heap.pop())) {
       // If the area of the current point is less than that of the previous point
       // to be eliminated, use the latters area instead. This ensures that the

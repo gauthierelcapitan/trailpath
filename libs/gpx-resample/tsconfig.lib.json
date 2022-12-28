@@ -8,7 +8,7 @@
   "include": ["**/*.ts"],
   "exclude": ["jest.config.ts", "**/*.spec.ts"],
   "paths": {
-    "@trail-path/gpx-distance": ["../../gpx-distance/src/index.ts"],
-    "@trail-path/gpx-shared": ["../../gpx-shared/index.ts"],
+    "@trailpath/gpx-distance": ["../../gpx-distance/src/index.ts"],
+    "@trailpath/gpx-shared": ["../../gpx-shared/index.ts"],
   }
 }

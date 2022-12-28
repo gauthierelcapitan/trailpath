@@ -19,7 +19,7 @@
     "useDefineForClassFields": true,
     "baseUrl": "./",
     "paths": {
-      "@trailpath/*": ["src/*"],
+      "@trailpath/*": ["src/*"]
     }
   },
   "files": [],

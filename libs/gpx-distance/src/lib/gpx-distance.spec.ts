@@ -1,7 +1,7 @@
-import { colFeretGeoJson } from '@trail-path/gpx-shared';
+import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
+import { colFeretGeoJson } from '@trailpath/gpx-shared';
 
 import { distance, length } from './gpx-distance';
-import { GpxDistanceMethodEnum } from './gpx-distance-method.enum';
 
 describe('Lib :: GpxDistance', () => {
   it('should calculate distance between 2 coordinates using Haversine formula', () => {

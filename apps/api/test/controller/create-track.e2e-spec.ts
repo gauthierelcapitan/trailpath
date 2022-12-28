@@ -4,6 +4,8 @@ import { FastifyAdapter } from '@nestjs/platform-fastify/adapters';
 import { NestFastifyApplication } from '@nestjs/platform-fastify/interfaces';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@trailpath/api/app/app.module';
+import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
+import { GpxResampleMethodEnum } from '@trailpath/gpx-resample';
 import * as request from 'supertest';
 
 describe('E2E : Create Track', () => {
@@ -29,6 +31,10 @@ describe('E2E : Create Track', () => {
 
     const response = await agent
       .post(`/tracks`)
+      .query({
+        resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+        distanceMethod: GpxDistanceMethodEnum.VINCENTY,
+      })
       .set('Content-Type', 'multipart/form-data')
       .attach('gpxFile', gpxFile);
 

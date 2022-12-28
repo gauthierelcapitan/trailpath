@@ -1,8 +1,8 @@
-import { GpxDistanceMethodEnum } from '@trail-path/gpx-distance';
-import { colFeretGeoJson } from '@trail-path/gpx-shared';
+import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
+import { GpxResampleMethodEnum } from '@trailpath/gpx-resample';
+import { colFeretGeoJson } from '@trailpath/gpx-shared';
 
 import { resample } from './gpx-resample';
-import { GpxResampleMethodEnum } from '@trail-path/gpx-resample';
 
 describe('LIB :: GpxResample', () => {
   it('should simplify linestring using Ramer Douglas Peucker algorithm', () => {

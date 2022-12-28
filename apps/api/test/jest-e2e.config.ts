@@ -5,7 +5,10 @@ export default {
   rootDir: ".",
   moduleNameMapper: {
     "^@trailpath/api/(.*)$": "<rootDir>/../src/$1",
-    "^@trailpath/api-interface/(.*)$": "<rootDir>/../../libs/api-interface/src/lib/$1"
+    "^@trailpath/api-interface/(.*)$": "<rootDir>/../../libs/api-interface/src/index.ts",
+    "^@trailpath/gpx-distance/(.*)$": "<rootDir>/../../libs/gpx-distance/src/index.ts",
+    "^@trailpath/gpx-resample/(.*)$": "<rootDir>/../../libs/gpx-distance/src/index.ts",
+    "^@trailpath/gpx-track/(.*)$": "<rootDir>/../../libs/gpx-distance/src/index.ts",
   },
   globals: {
     'ts-jest': {
