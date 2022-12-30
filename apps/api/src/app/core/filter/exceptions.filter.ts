@@ -1,8 +1,9 @@
 import {
   ArgumentsHost,
   Catch,
+  HttpException,
+  InternalServerErrorException,
   Logger,
-  NotFoundException,
 } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { FastifyRequest } from 'fastify';
@@ -16,7 +17,19 @@ export class ExceptionsFilter extends BaseExceptionFilter {
 
   // noinspection JSUnusedGlobalSymbols
   catch(exception: unknown, host: ArgumentsHost): void {
-    if (exception instanceof NotFoundException) {
+    // Transform the exception into an httpException if possible.
+    // If exception is not an implements of Error log and return...
+    let httpException: HttpException;
+    if (exception instanceof HttpException) {
+      httpException = exception;
+    } else if (exception instanceof Error) {
+      httpException = this.errorToHttpException(exception);
+    } else {
+      this.logger.error('Unexpected error :', exception);
+    }
+
+    // Build and print error/warn message log.
+    if (httpException) {
       const { id, ip, method, url, query, headers } = host
         .switchToHttp()
         .getRequest<FastifyRequest>();
@@ -24,11 +37,29 @@ export class ExceptionsFilter extends BaseExceptionFilter {
       const userAgent = headers['user-agent'] ?? '';
       const queryString = JSON.stringify(query);
 
-      this.logger.warn(
-        `${method} ${url} ${queryString} 404 0ms ${userAgent} ${ip} ${id}`,
-      );
+      const status = httpException.getStatus();
+      const log = `${method} ${url} ${queryString} ${status} ?ms ${userAgent} ${ip} ${id}`;
+
+      if (status >= 500) {
+        this.logger.error(log, httpException.stack);
+      } else {
+        this.logger.warn(log);
+      }
     }
 
-    super.catch(exception, host);
+    super.catch(httpException ?? exception, host);
+  }
+
+  private errorToHttpException(error: Error): HttpException {
+    const exception = new InternalServerErrorException(
+      `Internal Server Error -- ${error.message}`,
+      {
+        cause: error,
+      },
+    );
+
+    exception.stack =
+      exception.stack.split('\n').slice(0, 2).join('\n') + '\n' + error.stack;
+    return exception;
   }
 }

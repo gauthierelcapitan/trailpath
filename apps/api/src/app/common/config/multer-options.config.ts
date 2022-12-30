@@ -18,7 +18,6 @@ export const multerOptions = (extNames: MimeExtEnum[]) => {
       cb: FileFilterCallback,
     ) => {
       if (
-        file === null ||
         extNames
           .map((extName) => extName.toString().toLowerCase())
           .includes(extname(file.originalname.toLowerCase()))

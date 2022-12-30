@@ -70,8 +70,10 @@ pnpx nx generate @nrwl/workspace:lib api-interface
 pnpm nx run gpx-distance:test --output-style=static
 pnpm nx run gpx-distance:lint 
 
+```shell
+# Run single test from container
+pnpm nx run api:e2e -t 'should fail to create a track without gpx file'
+```
 
 
-https://gitlab.com/sbrl/line-simplification/-/blob/master/simplify_line.js
-
-https://gpstraces.net/comparaison-douglas-peucker-vs-visvalingam-whyatt
+https://iconoir.com/

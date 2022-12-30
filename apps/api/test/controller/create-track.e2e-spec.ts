@@ -4,12 +4,14 @@ import { FastifyAdapter } from '@nestjs/platform-fastify/adapters';
 import { NestFastifyApplication } from '@nestjs/platform-fastify/interfaces';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@trailpath/api/app/app.module';
+import { CreateTrackDtoInterface } from '@trailpath/api-interface/track';
 import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
 import { GpxResampleMethodEnum } from '@trailpath/gpx-resample';
 import * as request from 'supertest';
 
 describe('E2E : Create Track', () => {
   let app: INestApplication;
+  const gpxFile = __dirname + '/../fixtures/gpx/utmb-2022-coros-kj.gpx';
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -27,18 +29,45 @@ describe('E2E : Create Track', () => {
   it(`should create a track`, async () => {
     const agent = request(app.getHttpServer());
 
-    const gpxFile = __dirname + '/../fixtures/gpx/utmb-2022-coros-kj.gpx';
+    const createTrackDto: CreateTrackDtoInterface = {
+      distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
+      resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+    };
 
     const response = await agent
       .post(`/tracks`)
-      .query({
-        resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
-        distanceMethod: GpxDistanceMethodEnum.VINCENTY,
-      })
       .set('Content-Type', 'multipart/form-data')
+      .field(createTrackDto)
       .attach('gpxFile', gpxFile);
 
     expect(response.statusCode).toBe(HttpStatus.CREATED);
+  });
+
+  it(`should fail to create a track without gpx file`, async () => {
+    const agent = request(app.getHttpServer());
+
+    const createTrackDto: CreateTrackDtoInterface = {
+      distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
+      resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+    };
+
+    const response = await agent
+      .post(`/tracks`)
+      .set('Content-Type', 'multipart/form-data')
+      .field(createTrackDto);
+
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+  });
+
+  it(`should fail to create a track without distance and resample methods`, async () => {
+    const agent = request(app.getHttpServer());
+
+    const response = await agent
+      .post(`/tracks`)
+      .set('Content-Type', 'multipart/form-data')
+      .attach('gpxFile', gpxFile);
+
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
   });
 
   afterEach(async () => {
