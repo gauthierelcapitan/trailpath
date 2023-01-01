@@ -9,7 +9,6 @@ import {
   Post,
   UploadedFile,
   UseInterceptors,
-  UsePipes,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -23,7 +22,6 @@ import { multerOptions } from '@trailpath/api/app/common/config/multer-options.c
 import { CONTROLLER_TRACK } from '@trailpath/api/app/common/constant/controller.constant';
 import { SWAGGER_TAG_TRACK } from '@trailpath/api/app/common/constant/swagger.constant';
 import { MimeExtEnum } from '@trailpath/api/app/common/enum/mime-ext.enum';
-import { ZodValidationPipe } from '@trailpath/api/app/common/pipe/zod-validation-pipe';
 import { CreateTrackDto } from '@trailpath/api/app/track/track/create-track/create-track.dto';
 import { CreateTrackResponse } from '@trailpath/api/app/track/track/create-track/create-track.response';
 import { TrackService } from '@trailpath/api/app/track/track/track.service';
@@ -51,7 +49,6 @@ export class CreateTrackController {
   @ApiBody({ type: CreateTrackDto })
   @UseInterceptors(FileInterceptor('gpxFile', multerOptions([MimeExtEnum.GPX])))
   @HttpCode(HttpStatus.CREATED)
-  @UsePipes(ZodValidationPipe)
   async create(
     @Body() dto: CreateTrackDto,
     @UploadedFile() gpxFile,

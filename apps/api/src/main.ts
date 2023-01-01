@@ -12,6 +12,7 @@ import {
   SWAGGER_TAG_TRACK,
 } from '@trailpath/api/app/common/constant/swagger.constant';
 import { patchNestjsSwagger } from '@trailpath/api/app/common/openapi/patch-nest-swagger';
+import { ZodValidationPipe } from '@trailpath/api/app/common/pipe/zod-validation-pipe';
 
 import { AppModule } from './app/app.module';
 
@@ -33,6 +34,8 @@ async function bootstrap() {
 
   // TODO Temporary hacky patch to handle Zod dto in Swagger.
   patchNestjsSwagger();
+
+  app.useGlobalPipes(new ZodValidationPipe());
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(SWAGGER_API_PATH, app, document);
