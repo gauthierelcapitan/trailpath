@@ -10,6 +10,7 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 RUN npm install -g pnpm
 
 COPY .npmrc package.json pnpm-*.yaml ./
+ADD patches /app/patches
 
 RUN pnpm config set store-dir /pnpm-store
 RUN pnpm install --frozen-lockfile --store /pnpm-store

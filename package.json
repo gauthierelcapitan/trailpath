@@ -15,6 +15,7 @@
     "lint": "docker-compose exec api pnpm nx run-many --all --target=lint",
     "zsh:api": "docker-compose exec api zsh",
     "zsh:app": "docker-compose exec app zsh",
+    "db": "docker-compose exec db psql",
     "test": "docker-compose exec api pnpm nx run-many --all --target=test --output-style=static",
     "test:e2e": "docker-compose exec api pnpm nx run-many --all --target=e2e --output-style=static",
     "sync": "pnpm i --frozen-lockfile",

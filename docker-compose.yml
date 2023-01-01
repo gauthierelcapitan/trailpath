@@ -57,6 +57,38 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  db:
+    container_name: trail_path_db
+    hostname: trail-path-db
+    image: postgres:15.1-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./tools/db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    networks:
+      - trail-path-network
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: trail_path_pgadmin
+    expose:
+      - 80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - trail-path-network
+    labels:
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.traefik.me`)"
+    restart: always
+
   traefik:
     container_name: trail_path_traefik
     restart: unless-stopped
@@ -91,5 +123,6 @@ networks:
 volumes:
   certs:
   dist:
-
-
+  db:
+    driver: local
+  pgadmin-data:
