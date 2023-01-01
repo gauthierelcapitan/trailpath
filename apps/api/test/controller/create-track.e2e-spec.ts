@@ -74,6 +74,26 @@ describe('E2E : Create Track', () => {
     );
   });
 
+  it(`should fail to create a track with a jpg instead of a gpx`, async () => {
+    const agent = request(app.getHttpServer());
+
+    const jpgFile = __dirname + '/../fixtures/image/utmb22-utmb-kj.jpg';
+
+    const createTrackDto: CreateTrackDtoInterface = {
+      distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
+      resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+    };
+
+    const response = await agent
+      .post(`/tracks`)
+      .set('Content-Type', 'multipart/form-data')
+      .field(createTrackDto)
+      .attach('gpxFile', jpgFile);
+
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body.message).toBe('Unsupported file type .jpg');
+  });
+
   afterEach(async () => {
     await app.close();
   });

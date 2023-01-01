@@ -2,9 +2,7 @@ import { FileInterceptor } from '@nest-lab/fastify-multer';
 import {
   BadRequestException,
   Body,
-  Controller,
   HttpCode,
-  HttpException,
   HttpStatus,
   Post,
   UploadedFile,
@@ -16,18 +14,16 @@ import {
   ApiConsumes,
   ApiCreatedResponse,
   ApiOperation,
-  ApiTags,
 } from '@nestjs/swagger';
 import { multerOptions } from '@trailpath/api/app/common/config/multer-options.config';
-import { CONTROLLER_TRACK } from '@trailpath/api/app/common/constant/controller.constant';
-import { SWAGGER_TAG_TRACK } from '@trailpath/api/app/common/constant/swagger.constant';
 import { MimeExtEnum } from '@trailpath/api/app/common/enum/mime-ext.enum';
+import { TrackDecorator } from '@trailpath/api/app/track/track/common/decorator/track.decorator';
 import { CreateTrackDto } from '@trailpath/api/app/track/track/create-track/create-track.dto';
 import { CreateTrackResponse } from '@trailpath/api/app/track/track/create-track/create-track.response';
 import { TrackService } from '@trailpath/api/app/track/track/track.service';
+import { CreateTrackResponseInterface } from '@trailpath/api-interface/track/create-track/create-track.response.interface';
 
-@Controller(CONTROLLER_TRACK)
-@ApiTags(SWAGGER_TAG_TRACK)
+@TrackDecorator()
 export class CreateTrackController {
   constructor(private readonly trackService: TrackService) {}
 
@@ -35,15 +31,14 @@ export class CreateTrackController {
   @ApiOperation({
     summary: 'Create a track from a GPX file.',
     description:
-      'Create a track from a GPX file an responding with the corresponding uuid.',
+      'Create a track from a GPX file an responding with the corresponding UUID.',
   })
   @ApiCreatedResponse({
-    description: 'Create a track using a GPX file and return its id.',
+    description: 'Create a track using a GPX file and return its UUID.',
     type: CreateTrackResponse,
   })
   @ApiBadRequestResponse({
-    description: 'Bad request.',
-    type: HttpException,
+    description: 'Input validation failed.',
   })
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: CreateTrackDto })
@@ -52,9 +47,9 @@ export class CreateTrackController {
   async create(
     @Body() dto: CreateTrackDto,
     @UploadedFile() gpxFile,
-  ): Promise<CreateTrackResponse> {
+  ): Promise<CreateTrackResponseInterface> {
     if (!gpxFile) {
-      throw new BadRequestException('Gpx file is missing');
+      throw new BadRequestException('GPX file is missing');
     }
 
     const { distanceMethod, resampleMethod } = dto;
@@ -65,6 +60,6 @@ export class CreateTrackController {
       resampleMethod,
     );
 
-    return new CreateTrackResponse({ uuid });
+    return { uuid };
   }
 }
