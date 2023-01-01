@@ -11,6 +11,7 @@ import {
   SWAGGER_TAG_HEALTH,
   SWAGGER_TAG_TRACK,
 } from '@trailpath/api/app/common/constant/swagger.constant';
+import { patchNestjsSwagger } from '@trailpath/api/app/common/openapi/patch-nest-swagger';
 
 import { AppModule } from './app/app.module';
 
@@ -29,6 +30,10 @@ async function bootstrap() {
     .addTag(SWAGGER_TAG_HEALTH)
     .addTag(SWAGGER_TAG_TRACK)
     .build();
+
+  // TODO Temporary hacky patch to handle Zod dto in Swagger.
+  patchNestjsSwagger();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(SWAGGER_API_PATH, app, document);
 

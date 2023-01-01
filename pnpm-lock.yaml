@@ -6,6 +6,7 @@ patchedDependencies:
     path: patches/togpx@0.5.4.patch
 
 specifiers:
+  '@anatine/zod-nestjs': ^1.8.0
   '@fastify/static': ^6.6.0
   '@georgedoescode/generative-utils': ^1.0.38
   '@inlet/react-pixi': ^6.8.0
@@ -75,6 +76,7 @@ specifiers:
   jest-environment-jsdom: 28.1.1
   multer: 1.4.5-lts.1
   nx: 15.2.4
+  openapi3-ts: ^3.1.2
   pixi.js: ^7.0.4
   prettier: ^2.6.2
   react: 18.2.0
@@ -87,6 +89,7 @@ specifiers:
   supertest: ^6.3.3
   tinycolor2: ^1.4.2
   togpx: ^0.5.4
+  ts-deepmerge: ^5.0.0
   ts-jest: 28.0.5
   ts-node: 10.9.1
   tslib: ^2.3.0
@@ -98,8 +101,10 @@ specifiers:
   vite-tsconfig-paths: ^3.6.0
   vitest: ^0.25.1
   xmldom: ^0.6.0
+  zod: ^3.20.2
 
 dependencies:
+  '@anatine/zod-nestjs': 1.8.0_7hhxkil5tyjybwl3lvwzsfm2de
   '@fastify/static': 6.6.0
   '@georgedoescode/generative-utils': 1.0.38
   '@inlet/react-pixi': 6.8.0_ijhfp3dl7wtssxbsovgwwo27zq
@@ -124,6 +129,7 @@ dependencies:
   gsap: 3.11.3
   hsl-to-hex: 1.0.0
   multer: 1.4.5-lts.1
+  openapi3-ts: 3.1.2
   pixi.js: 7.0.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -133,9 +139,11 @@ dependencies:
   simplex-noise: 4.0.1
   tinycolor2: 1.4.2
   togpx: 0.5.4_pj4rv4z3v5kdxkgynztrjmkjba
+  ts-deepmerge: 5.0.0
   tslib: 2.4.1
   uuid: 9.0.0
   xmldom: 0.6.0
+  zod: 3.20.2
 
 devDependencies:
   '@jest/globals': 29.3.1
@@ -204,6 +212,34 @@ packages:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.17
     dev: true
+
+  /@anatine/zod-nestjs/1.8.0_7hhxkil5tyjybwl3lvwzsfm2de:
+    resolution: {integrity: sha512-+3erKMNJ1w9FoOcl9W1aPCO4hC2A2OBG7ieOEDuvYuCwWw5a/Md7R16Kyp0/cecvne9hRPjhWelLa697ipEUwA==}
+    peerDependencies:
+      '@nestjs/core': ^7.0.0 || ^8.0.0 || ^9.0.0
+      '@nestjs/swagger': ^6.0.0
+      openapi3-ts: ^2.0.0 || ^3.0.0
+      ts-deepmerge: ^4.0.0
+      zod: ^3.17.0 || ^3.18.0
+    dependencies:
+      '@anatine/zod-openapi': 1.11.0_26f3syjlpe3aomwtusmxknd77u
+      '@nestjs/core': 9.2.1_wqmgrsh4vfci5e6jx45m6crmsi
+      '@nestjs/swagger': 6.1.4_msprghgtrmqoraddow4lmr54ka
+      openapi3-ts: 3.1.2
+      ts-deepmerge: 5.0.0
+      zod: 3.20.2
+    dev: false
+
+  /@anatine/zod-openapi/1.11.0_26f3syjlpe3aomwtusmxknd77u:
+    resolution: {integrity: sha512-MmZQMKa/nfM9KpqgiAuGVIT6TJXmts06JF3+EeT1jw3Y5GB7UOuljnIAgGAMExa0tAIP9uFhp5RhIMNDtZcqWw==}
+    peerDependencies:
+      openapi3-ts: ^2.0.0 || ^3.0.0
+      zod: ^3.20.0
+    dependencies:
+      openapi3-ts: 3.1.2
+      ts-deepmerge: 4.0.0
+      zod: 3.20.2
+    dev: false
 
   /@angular-devkit/core/14.2.1:
     resolution: {integrity: sha512-lW8oNGuJqr4r31FWBjfWQYkSXdiOHBGOThIEtHvUVBKfPF/oVrupLueCUgBPel+NvxENXdo93uPsqHN7bZbmsQ==}
@@ -10550,6 +10586,12 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
+  /openapi3-ts/3.1.2:
+    resolution: {integrity: sha512-S8fijNOqe/ut0kEDAwHZnI7sVYqb8Q3XnISmSyXmK76jgrcf4ableI75KTY1qdksd9EI/t39Vi5M4VYKrkNKfQ==}
+    dependencies:
+      yaml: 2.2.1
+    dev: false
+
   /opener/1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
@@ -12893,6 +12935,16 @@ packages:
     hasBin: true
     dev: true
 
+  /ts-deepmerge/4.0.0:
+    resolution: {integrity: sha512-IrjjAwfM/J6ajWv5wDRZBdpVaTmuONJN1vC85mXlWVPXKelouLFiqsjR7m0h245qY6zZEtcDtcOTc4Rozgg1TQ==}
+    engines: {node: '>=14'}
+    dev: false
+
+  /ts-deepmerge/5.0.0:
+    resolution: {integrity: sha512-K1V6dniogjom+6jsLCysv7y6/Hd04/a9DXiKFSr/7/Y6Ji+9fwFF8DzdncYNQ6VP6to8U9qbztQpIZKqYrtBgQ==}
+    engines: {node: '>=14'}
+    dev: false
+
   /ts-interface-checker/0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
@@ -13770,6 +13822,11 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /yaml/2.2.1:
+    resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
+    engines: {node: '>= 14'}
+    dev: false
+
   /yargs-parser/21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -13796,3 +13853,7 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
+    dev: false

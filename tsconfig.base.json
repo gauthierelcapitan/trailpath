@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@trailpath/api-interface": ["libs/api-interface/src/index.ts"],
       "@trailpath/gpx-distance": ["libs/gpx-distance/src/index.ts"],
       "@trailpath/gpx-track": ["libs/gpx-track/src/index.ts"],
       "@trailpath/gpx-resample": ["libs/gpx-resample/src/index.ts"],

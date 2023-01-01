@@ -8,11 +8,11 @@
     "target": "es2015",
     "baseUrl": "./",
     "paths": {
-      "@trailpath/api/*": ["src/*"],
       "@trailpath/api-interface/*": ["../../libs/api-interface/src/lib/*"],
       "@trailpath/gpx-distance": ["../../libs/gpx-distance/src/index.ts"],
       "@trailpath/gpx-resample": ["../../libs/gpx-resample/src/index.ts"],
-      "@trailpath/gpx-track": ["../../libs/gpx-track/src/index.ts"]
+      "@trailpath/gpx-track": ["../../libs/gpx-track/src/index.ts"],
+      "@trailpath/api/*": ["src/*"]
     },
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],

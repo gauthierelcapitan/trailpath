@@ -4,7 +4,7 @@ import { FastifyAdapter } from '@nestjs/platform-fastify/adapters';
 import { NestFastifyApplication } from '@nestjs/platform-fastify/interfaces';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@trailpath/api/app/app.module';
-import { CreateTrackDtoInterface } from '@trailpath/api-interface/track';
+import { CreateTrackDtoInterface } from '@trailpath/api-interface/track/create-track/create-track.dto.interface';
 import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
 import { GpxResampleMethodEnum } from '@trailpath/gpx-resample';
 import * as request from 'supertest';
@@ -59,15 +59,19 @@ describe('E2E : Create Track', () => {
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
   });
 
-  it(`should fail to create a track without distance and resample methods`, async () => {
+  it(`should fail to create a track with missing distance and resample method`, async () => {
     const agent = request(app.getHttpServer());
 
     const response = await agent
       .post(`/tracks`)
       .set('Content-Type', 'multipart/form-data')
+      .field({})
       .attach('gpxFile', gpxFile);
 
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body.message).toBe(
+      'Input validation failed: distanceMethod: Required, resampleMethod: Required',
+    );
   });
 
   afterEach(async () => {

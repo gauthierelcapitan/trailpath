@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { TrackMetadataInterface } from '@trailpath/api-interface/track';
+import { TrackMetadataInterface } from '@trailpath/api-interface/track/track-metadata.interface';
 
 export class TrackMetadataView implements TrackMetadataInterface {
   @ApiProperty({
