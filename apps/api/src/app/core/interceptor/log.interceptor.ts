@@ -5,15 +5,25 @@ import {
   Logger,
   NestInterceptor,
 } from '@nestjs/common';
-import { GLOBAL_PREFIX } from '@trailpath/api/app/common/constant/global.constant';
+import { ConfigService } from '@nestjs/config';
+import { EnvironmentInterface } from '@trailpath/api/environments/interface/environment.interface';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class LogInterceptor implements NestInterceptor {
-  constructor(private readonly logger: Logger) {
+  private readonly globalApiPrefix: string;
+
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly logger: Logger,
+  ) {
     this.logger = new Logger(LogInterceptor.name);
+    this.globalApiPrefix =
+      this.configService.get<EnvironmentInterface['globalApiPrefix']>(
+        'globalApiPrefix',
+      ) ?? 'api';
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -21,7 +31,7 @@ export class LogInterceptor implements NestInterceptor {
     const { url } = context.switchToHttp().getRequest<FastifyRequest>();
 
     // Ignore the logs if the request is health
-    if (url === `/${GLOBAL_PREFIX}/health`) {
+    if (url === `/${this.globalApiPrefix}/health`) {
       return next.handle();
     }
 
