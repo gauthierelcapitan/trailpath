@@ -15,13 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@trailpath/gpx-distance": ["libs/gpx-distance/src/index.ts"],
-      "@trailpath/gpx-track": ["libs/gpx-track/src/index.ts"],
-      "@trailpath/gpx-resample": ["libs/gpx-resample/src/index.ts"],
-      "@trailpath/gpx-shared": ["libs/gpx-shared/index.ts"],
+      "@trailpath/*": ["apps/app/src/*"],
       "@trailpath/api-interface/*": ["libs/api-interface/src/lib/*"],
       "@trailpath/api/*": ["apps/api/src/*"],
-      "@trailpath/*": ["apps/app/src/*"]
+      "@trailpath/gpx-distance": ["libs/gpx-distance/src/index.ts"],
+      "@trailpath/gpx-resample": ["libs/gpx-resample/src/index.ts"],
+      "@trailpath/gpx-shared": ["libs/gpx-shared/index.ts"],
+      "@trailpath/gpx-track": ["libs/gpx-track/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

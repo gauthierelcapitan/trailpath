@@ -63,7 +63,9 @@ function setupOpenApi(app: INestApplication) {
     .addTag(SWAGGER_TAG_TRACK)
     .build();
 
-  // TODO Temporary hacky patch to handle Zod dto in Swagger.
+  /**
+   * TODO Temporary hacky patch to handle Zod dto in Swagger.
+   */
   patchNestjsSwagger();
 
   const document = SwaggerModule.createDocument(app, config);

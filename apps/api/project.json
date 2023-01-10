@@ -55,9 +55,7 @@
         "passWithNoTests": true,
         "verbose": true,
         "codeCoverage": true,
-        "coverageReporters": [
-          "text"
-        ]
+        "coverageReporters": ["text"]
       }
     },
     "e2e": {
@@ -65,7 +63,66 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/api/test/jest-e2e.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "verbose": true
+      }
+    },
+    "mikro-orm": {
+      "executor": "@alexy4744/nx-mikro-orm-cli:run",
+      "options": {
+        "config": {
+          "configPaths": ["./src/mikro-orm.config.ts","./dist/mikro-orm.config.js"],
+          "tsConfigPath": "./tsconfig.json",
+          "useTsNode": true
+        }
+      }
+    },
+    "schema-create": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"schema:create --run\""
+      }
+    },
+    "schema-fresh": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"schema:fresh --run --seed\""
+      }
+    },
+    "schema-update": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"schema:update --safe --run\""
+      }
+    },
+    "schema-drop": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"schema:drop --run\""
+      }
+    },
+    "migration-initial": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"migration:create --initial\""
+      }
+    },
+    "migration-create": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"migration:create\""
+      }
+    },
+    "migration-fresh": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm api --args=\"migration:fresh --seed\""
+      }
+    },
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx mikro-orm backend --args=\"seeder:run\""
       }
     }
   },

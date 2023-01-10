@@ -20,12 +20,12 @@ import { MimeExtEnum } from '@trailpath/api/app/common/enum/mime-ext.enum';
 import { TrackDecorator } from '@trailpath/api/app/track/track/common/decorator/track.decorator';
 import { CreateTrackDto } from '@trailpath/api/app/track/track/create-track/create-track.dto';
 import { CreateTrackResponse } from '@trailpath/api/app/track/track/create-track/create-track.response';
-import { TrackService } from '@trailpath/api/app/track/track/track.service';
+import { CreateTrackService } from '@trailpath/api/app/track/track/create-track/create-track.service';
 import { CreateTrackResponseInterface } from '@trailpath/api-interface/track/create-track/create-track.response.interface';
 
 @TrackDecorator()
 export class CreateTrackController {
-  constructor(private readonly trackService: TrackService) {}
+  constructor(private readonly createTrackService: CreateTrackService) {}
 
   @Post()
   @ApiOperation({
@@ -54,7 +54,7 @@ export class CreateTrackController {
 
     const { distanceMethod, resampleMethod } = dto;
 
-    const uuid = this.trackService.create(
+    const uuid = await this.createTrackService.create(
       gpxFile,
       distanceMethod,
       resampleMethod,

@@ -1,8 +1,11 @@
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from '@trailpath/api/app/common/pipe/zod-validation-pipe';
 import { CoreModule } from '@trailpath/api/app/core/core.module';
+import { DataAccessModule } from '@trailpath/api/app/data-access/data-access.module';
+import { MikroOrmConfigService } from '@trailpath/api/app/data-access/mikro-orm-config.service';
 import { HealthModule } from '@trailpath/api/app/health/health.module';
 import { TrackModule } from '@trailpath/api/app/track/track/track.module';
 import { getEnvConfig } from '@trailpath/api/environments/environment-config';
@@ -18,7 +21,9 @@ import { env } from '../environments/environment';
       cache: true,
       validate: () => envValidation(env),
     }),
+    MikroOrmModule.forRootAsync({ useClass: MikroOrmConfigService }),
     CoreModule,
+    DataAccessModule,
     HealthModule,
     TrackModule,
   ],

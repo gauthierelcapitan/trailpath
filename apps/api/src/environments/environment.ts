@@ -4,7 +4,7 @@ export const env: Partial<EnvironmentInterface> = {
   production: false,
   globalApiPrefix: 'api',
   port: 3333,
-  baseUrl: 'https://api.traefik.me',
+  baseUrl: 'http://localhost',
   database: {
     host: 'trail-path-db',
     port: 5432,

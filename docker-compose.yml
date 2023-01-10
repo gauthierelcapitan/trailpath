@@ -81,13 +81,19 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@local.com
       PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "True"
+      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 30
+      PGADMIN_CONFIG_FILE_LOG_LEVEL: 30
+      GUNICORN_ACCESS_LOGFILE: /dev/null
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     networks:
       - trail-path-network
     labels:
       - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.traefik.me`)"
-    restart: always
+    restart: unless-stopped
+    depends_on:
+      - db
 
   traefik:
     container_name: trail_path_traefik

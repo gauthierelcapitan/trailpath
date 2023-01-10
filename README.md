@@ -77,3 +77,21 @@ pnpm nx run api:e2e -t 'should fail to create a track without gpx file'
 
 
 https://iconoir.com/
+
+
+https://github.com/IulianOctavianPreda/TimeTracker-HR_Management
+
+### PostGis
+
+https://symphony.is/blog/postgis---a-real-world-example
+https://registry.hub.docker.com/r/postgis/postgis/
+
+
+// npx nx migration-initial --project=api
+
+
+### Database 
+
+```shell
+
+```
