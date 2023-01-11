@@ -79,7 +79,7 @@ services:
     expose:
       - 80
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_EMAIL: admin@trailpath.run
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "True"
       PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 30
