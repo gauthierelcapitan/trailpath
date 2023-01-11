@@ -28,4 +28,8 @@ To get started, login using :
 
 ## API
 
+[Nest.JS](https://nestjs.com/) is used as backend framework with Fastify server and a Swagger API available at [https://api.traefik.me/api/api-docs](https://api.traefik.me/api/api-docs).
+
 ## APP
+
+[Vite](https://vitejs.dev) is used as front boundler and available at [https://app.traefik.me](https://app.traefik.me)
