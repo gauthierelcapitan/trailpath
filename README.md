@@ -1,4 +1,4 @@
-# ## Trail Path®
+# Trail Path®
 
 The repository contains the Trail Path® project.
 
