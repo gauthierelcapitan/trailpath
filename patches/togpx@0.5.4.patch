@@ -8,7 +8,7 @@ index cf2866d01ac8481450aad586f06d206cb6634e16..4991b4d38e542fc56237353d44e94e19
      // constructs a description for a given feature
 -    // uses a nested `tags` object or the feature's `properties` if present
 -    // and then concatenates all properties to construct a description.
-+    // patched to get only desc 
++    // patched to get only desc
      if (!props) return "";
 -    if (typeof props.tags === "object")
 -      return get_feature_description(props.tags);
@@ -21,7 +21,7 @@ index cf2866d01ac8481450aad586f06d206cb6634e16..4991b4d38e542fc56237353d44e94e19
 -    return res.substr(0,res.length-1);
 +    if (props.desc)
 +      return props.desc;
-+    return "";	 
++    return "";
    }
    function get_feature_coord_times(feature) {
      if (!feature.properties) return null;
@@ -35,7 +35,7 @@ index c1e8bbd4793738371cf3c02e77195ba85b3b3a3a..df91616a27c7d68be14b01b0c4575331
      // constructs a description for a given feature
 -    // uses a nested `tags` object or the feature's `properties` if present
 -    // and then concatenates all properties to construct a description.
-+    // patched to get only desc 
++    // patched to get only desc
      if (!props) return "";
 -    if (typeof props.tags === "object")
 -      return get_feature_description(props.tags);
@@ -48,7 +48,7 @@ index c1e8bbd4793738371cf3c02e77195ba85b3b3a3a..df91616a27c7d68be14b01b0c4575331
 -    return res.substr(0,res.length-1);
 +    if (props.desc)
 +      return props.desc;
-+    return "";	  
++    return "";
    }
    function get_feature_coord_times(feature) {
      if (!feature.properties) return null;

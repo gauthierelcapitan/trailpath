@@ -12,4 +12,9 @@ export const env: Partial<EnvironmentInterface> = {
     username: 'postgres',
     password: 'postgres',
   },
+  earthdata: {
+    username: 'gauthierelcapitan',
+    password: 'Test12345',
+    tilesDirectory: '/tmp',
+  }
 };

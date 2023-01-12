@@ -5,15 +5,23 @@ import { catchError, firstValueFrom } from 'rxjs';
 import { AxiosError } from '@nestjs/terminus/dist/errors/axios.error';
 import { chunk } from 'lodash';
 import {
-  IGN_ELEVATION_BATCH_SIZE
+  IGN_ELEVATION_BATCH_SIZE,
 } from '@trailpath/api/app/elevation/replace-elevation-ign/replace-elevation-ign.constant';
 import {
-  ElevationIgnResponse
+  ElevationIgnResponse,
 } from '@trailpath/api/app/elevation/common/elevation-ign-response.interface';
 import {
-  ApplicationException
+  ApplicationException,
 } from '@trailpath/api/app/common/exception/application.exception';
+import {
+  ElevationDatasourceEnum,
+} from '@trailpath/api-interface/elevation/elevation-datasource.enum';
 
+/**
+ * Class that handle elevation replacement in coordinates using French IGN GeoService data.
+ *
+ * Documentation : https://geoservices.ign.fr/documentation/services/api-et-services-ogc/calcul-altimetrique-rest
+ */
 @Injectable()
 export class ReplaceElevationIgnService {
 
@@ -21,7 +29,7 @@ export class ReplaceElevationIgnService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async replace(coordinates: Position[]): Promise<Position[]> {
+  async replace(coordinates: Position[], _datasource: ElevationDatasourceEnum.IGN): Promise<Position[]> {
 
     const chunks = chunk(coordinates, IGN_ELEVATION_BATCH_SIZE)
 
@@ -41,11 +49,11 @@ export class ReplaceElevationIgnService {
       }).pipe(
         catchError((error: AxiosError) => {
           this.logger.error(error.response.data);
-          throw new ApplicationException(`Error ${error.response.data} while fetching IGN ${url}.`);
+          throw new ApplicationException(`Error ${error.response.data} while fetching IGN elevation ${url}.`);
         }),
       )
     );
 
-    return coordinates.map(([lon, lat], index) => ([lon, lat, elevations[index].z]))
+    return coordinates.map(([lon, lat], index) => ([lon, lat, (Math.round(elevations[index].z*10)/10)]))
   }
 }

@@ -64,6 +64,7 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
     "simplex-noise": "^4.0.1",
+    "srtm-elevation": "^2.1.2",
     "tinycolor2": "^1.4.2",
     "togpx": "^0.5.4",
     "ts-deepmerge": "^5.0.0",
@@ -136,7 +137,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "togpx@0.5.4": "patches/togpx@0.5.4.patch"
+      "togpx@0.5.4": "patches/togpx@0.5.4.patch",
+      "srtm-elevation@2.1.2": "patches/srtm-elevation@2.1.2.patch"
     }
   }
 }

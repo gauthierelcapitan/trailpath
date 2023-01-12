@@ -1,0 +1,42 @@
+diff --git a/src/srtm.js b/src/srtm.js
+index 0c17cb9e0be9deadd7a17cdd16d4198333e2eb47..21832cde40da76e4fd9b6f3610b84b7ead311966 100644
+--- a/src/srtm.js
++++ b/src/srtm.js
+@@ -137,8 +137,12 @@ SRTMElevationDownloader.prototype.download = async function(tileKey, latLng, cb)
+ SRTMElevationDownloader.prototype._getUrl = function(tileKey) {
+     let url = null;
+     if(srtmDb.includes(tileKey)) {
+-        const lat = tileKey.substr(0, 3);
+-        const lng = tileKey.substr(3, 4);
++        let lat = tileKey.substr(0, 3);
++        let lng = tileKey.substr(3, 4);
++	if (this.options.provider.includes('NASADEM_HGT')) {
++	    lat = lat.toLowerCase();
++	    lng = lng.toLowerCase();
++	}
+         url = this.options.provider.replace(/{lat}/g, lat).replace(/{lng}/g, lng);
+     }
+     return url;
+@@ -161,7 +165,7 @@ SRTMElevationDownloader.prototype._download = function(url, stream) {
+                 await streamPipeline(response.body, stream);
+                 fulfill(stream);
+             } else {
+-                reject(new Error("Error downloading file"));
++                reject(new Error("Error downloading file " + url));
+             }
+         } catch(err) {
+             reject(err || response.headers['www-authenticate'] || response);
+@@ -199,9 +203,10 @@ SRTMElevationDownloader.prototype._unzipSync = async function(zipPath, targetPat
+                     return;
+                 }
+ 
+-                var lastSlashIdx = entry.fileName.lastIndexOf('/'),
+-                fileName = entry.fileName.substr(lastSlashIdx + 1),
+-                filePath = path.join(targetPath, fileName);
++                let lastSlashIdx = entry.fileName.lastIndexOf('/');
++                let fileName = entry.fileName.substr(lastSlashIdx + 1);
++		let fileNameFormatted = fileName.split('.')[0].toUpperCase() + '.' + fileName.split('.')[1];	    
++                let filePath = path.join(targetPath, fileNameFormatted);
+ 
+                 const readStream = await entry.openReadStream();
+ 

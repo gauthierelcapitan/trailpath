@@ -1,3 +1,6 @@
 export enum ElevationDatasourceEnum {
-  IGN = 'IGN', // https://geoservices.ign.fr/documentation/services/api-et-services-ogc/calcul-altimetrique-rest
+  IGN = 'IGN',
+  NASADEM = 'NASADEM',
+  SRTMGL1 = 'SRTMGL1',
+  SRTMGL3 = 'SRTMGL3',
 }

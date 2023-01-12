@@ -26,6 +26,11 @@ function parseEnvVariables() {
       envVariables.database.username = env.DATABASE_USERNAME;
     if (env.DATABASE_PASSWORD)
       envVariables.database.password = env.DATABASE_PASSWORD;
+
+    envVariables.earthdata = {};
+    if (env.EARTHDATA_USERNAME) envVariables.earthdata.username = env.EARTHDATA_USERNAME;
+    if (env.EARTHDATA_PASSWORD) envVariables.earthdata.password = env.EARTHDATA_PASSWORD;
+    if (env.EARTHDATA_TILES_DIRECTORY) envVariables.earthdata.password = env.EARTHDATA_TILES_DIRECTORY;
   }
   return envVariables;
 }

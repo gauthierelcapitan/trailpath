@@ -5,17 +5,19 @@ import {
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { EnvironmentInterface } from '@trailpath/api/environments/interface/environment.interface';
 
 import { mikroOrmConfigBase } from '../../../mikro-orm.config.base';
+import {
+  EnvironmentDatabaseInterface
+} from '@trailpath/api/environments/interface/environment-database.interface';
 
 @Injectable()
 export class MikroOrmConfigService implements MikroOrmOptionsFactory {
-  constructor(private config: ConfigService) {}
+  constructor(private configService: ConfigService) {}
 
   // noinspection JSUnusedGlobalSymbols
   public createMikroOrmOptions(): MikroOrmModuleOptions<PostgreSqlDriver> {
-    const db = this.config.get<EnvironmentInterface['database']>('database');
+    const db = this.configService.get<EnvironmentDatabaseInterface>('database');
 
     return {
       host: db.host,
