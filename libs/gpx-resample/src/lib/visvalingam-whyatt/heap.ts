@@ -74,6 +74,6 @@ export class Heap {
   }
 
   private compare(a: Triangle, b: Triangle): number {
-    return a && b ? a[1][2] - b[1][2] : 0;
+    return a && b ? a[1][3] - b[1][3] : 0;
   }
 }

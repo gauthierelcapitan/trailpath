@@ -16,6 +16,12 @@ import { CreateTrackDtoInterface } from '@trailpath/api-interface/track/create-t
 import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
 import { GpxResampleMethodEnum } from '@trailpath/gpx-resample';
 import * as request from 'supertest';
+import {
+  ElevationMethodEnum
+} from '@trailpath/api-interface/elevation/elevation-method.enum';
+import {
+  ElevationDatasourceEnum
+} from '@trailpath/api-interface/elevation/elevation-datasource.enum';
 
 describe('E2E : Create Track', () => {
   let app: INestApplication;
@@ -43,6 +49,8 @@ describe('E2E : Create Track', () => {
     const createTrackDto: CreateTrackDtoInterface = {
       distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
       resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+      elevationMethod: ElevationMethodEnum.NONE,
+      elevationDatasource: ElevationDatasourceEnum.IGN
     };
 
     const response = await agent
@@ -60,6 +68,8 @@ describe('E2E : Create Track', () => {
     const createTrackDto: CreateTrackDtoInterface = {
       distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
       resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+      elevationMethod: ElevationMethodEnum.NONE,
+      elevationDatasource: ElevationDatasourceEnum.IGN
     };
 
     const response = await agent
@@ -81,7 +91,7 @@ describe('E2E : Create Track', () => {
 
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body.message).toBe(
-      'Input validation failed: distanceMethod: Required, resampleMethod: Required',
+      'Input validation failed: distanceMethod: Required, resampleMethod: Required, elevationMethod: Required, elevationDatasource: Required',
     );
   });
 
@@ -93,6 +103,8 @@ describe('E2E : Create Track', () => {
     const createTrackDto: CreateTrackDtoInterface = {
       distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
       resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
+      elevationMethod: ElevationMethodEnum.NONE,
+      elevationDatasource: ElevationDatasourceEnum.IGN
     };
 
     const response = await agent

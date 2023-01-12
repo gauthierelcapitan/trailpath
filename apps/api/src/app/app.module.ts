@@ -12,6 +12,7 @@ import { getEnvConfig } from '@trailpath/api/environments/environment-config';
 import { envValidation } from '@trailpath/api/environments/environment-validator';
 
 import { env } from '../environments/environment';
+import { ElevationModule } from '@trailpath/api/app/elevation/elevation.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { env } from '../environments/environment';
     MikroOrmModule.forRootAsync({ useClass: MikroOrmConfigService }),
     CoreModule,
     DataAccessModule,
+    ElevationModule,
     HealthModule,
     TrackModule,
   ],

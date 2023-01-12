@@ -4,9 +4,10 @@ import { CreateTrackController } from '@trailpath/api/app/track/track/create-tra
 import { CreateTrackService } from '@trailpath/api/app/track/track/create-track/create-track.service';
 import { GetTrackController } from '@trailpath/api/app/track/track/get-track/get-track.controller';
 import { TrackService } from '@trailpath/api/app/track/track/track.service';
+import { ElevationModule } from '@trailpath/api/app/elevation/elevation.module';
 
 @Module({
-  imports: [FastifyMulterModule],
+  imports: [FastifyMulterModule, ElevationModule],
   controllers: [GetTrackController, CreateTrackController],
   providers: [TrackService, CreateTrackService],
 })
