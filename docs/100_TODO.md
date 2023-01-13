@@ -89,8 +89,16 @@ https://codesandbox.io/s/2w6xv?file=/src/Map.tsx
 // npx nx migration-initial --project=api
 
 
-### Database
+### TDT col feret
 
-```shell
+* 1272
+* Ecart moyen 3m
+* Ecart max 21
+* Proportion alti GPS 100%
 
-```
+resample IGN (30m / 3m) + lissage
+
+4.6 km  759 m  16 m
+
+min 1750
+max 2700

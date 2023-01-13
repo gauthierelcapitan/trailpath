@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@trail-path/gpx-distance-elevation": [
+        "libs/gpx-distance-elevation/src/index.ts"
+      ],
       "@trailpath/*": ["apps/app/src/*"],
       "@trailpath/api-interface/*": ["libs/api-interface/src/lib/*"],
       "@trailpath/api/*": ["apps/api/src/*"],
