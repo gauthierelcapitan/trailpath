@@ -34,10 +34,8 @@ export class Line {
       return distSquared(position, this.positionA);
     }
     return (
-      ((position[0] - this.positionA[0]) *
-        (this.positionB[0] - this.positionA[0]) +
-        (position[1] - this.positionA[1]) *
-          (this.positionB[1] - this.positionA[1])) /
+      ((position[0] - this.positionA[0]) * (this.positionB[0] - this.positionA[0]) +
+        (position[1] - this.positionA[1]) * (this.positionB[1] - this.positionA[1])) /
       this.lengthSquared
     );
   }

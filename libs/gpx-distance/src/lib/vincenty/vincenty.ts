@@ -26,8 +26,7 @@ export class Vincenty implements GpxDistanceAbstract {
       cosU2 = 1 / Math.sqrt(1 + tanU2 * tanU2),
       sinU2 = tanU2 * cosU2;
 
-    const antipodal =
-      Math.abs(L) > Math.PI / 2 || Math.abs(phiTwo - phiOne) > Math.PI / 2;
+    const antipodal = Math.abs(L) > Math.PI / 2 || Math.abs(phiTwo - phiOne) > Math.PI / 2;
 
     let lambda = L,
       sinLambda = null,
@@ -48,8 +47,7 @@ export class Vincenty implements GpxDistanceAbstract {
       cosLambda = Math.cos(lambda);
       sinSqSigma =
         cosU2 * sinLambda * (cosU2 * sinLambda) +
-        (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) *
-          (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda);
+        (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) * (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda);
 
       if (Math.abs(sinSqSigma) < Number.EPSILON) {
         break; // co-incident/antipodal points (falls back on lambda/sigma = L)
@@ -60,8 +58,7 @@ export class Vincenty implements GpxDistanceAbstract {
       sigma = Math.atan2(sinSigma, cosSigma);
       sinAlpha = (cosU1 * cosU2 * sinLambda) / sinSigma;
       cosSqAlpha = 1 - sinAlpha * sinAlpha;
-      cos2sigmaM =
-        cosSqAlpha != 0 ? cosSigma - (2 * sinU1 * sinU2) / cosSqAlpha : 0; // on equatorial line cos²alpha = 0 (§6)
+      cos2sigmaM = cosSqAlpha != 0 ? cosSigma - (2 * sinU1 * sinU2) / cosSqAlpha : 0; // on equatorial line cos²alpha = 0 (§6)
       C = (f / 16) * cosSqAlpha * (4 + f * (4 - 3 * cosSqAlpha));
       lambdaPrime = lambda;
       lambda =
@@ -69,13 +66,8 @@ export class Vincenty implements GpxDistanceAbstract {
         (1 - C) *
           f *
           sinAlpha *
-          (sigma +
-            C *
-              sinSigma *
-              (cos2sigmaM + C * cosSigma * (-1 + 2 * cos2sigmaM * cos2sigmaM)));
-      const iterationCheck = antipodal
-        ? Math.abs(lambda) - Math.PI
-        : Math.abs(lambda);
+          (sigma + C * sinSigma * (cos2sigmaM + C * cosSigma * (-1 + 2 * cos2sigmaM * cos2sigmaM)));
+      const iterationCheck = antipodal ? Math.abs(lambda) - Math.PI : Math.abs(lambda);
       if (iterationCheck > Math.PI) {
         throw new Error('lambda > Math.PI');
       }
@@ -85,8 +77,7 @@ export class Vincenty implements GpxDistanceAbstract {
     }
 
     const uSq = (cosSqAlpha * (a * a - b * b)) / (b * b);
-    const A =
-      1 + (uSq / 16384) * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
+    const A = 1 + (uSq / 16384) * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
     const B = (uSq / 1024) * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
     const deltaSigma =
       B *
@@ -94,10 +85,7 @@ export class Vincenty implements GpxDistanceAbstract {
       (cos2sigmaM +
         (B / 4) *
           (cosSigma * (-1 + 2 * cos2sigmaM * cos2sigmaM) -
-            (B / 6) *
-              cos2sigmaM *
-              (-3 + 4 * sinSigma * sinSigma) *
-              (-3 + 4 * cos2sigmaM * cos2sigmaM)));
+            (B / 6) * cos2sigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2sigmaM * cos2sigmaM)));
 
     const distance = b * A * (sigma - deltaSigma); // distance = length of the geodesic
 

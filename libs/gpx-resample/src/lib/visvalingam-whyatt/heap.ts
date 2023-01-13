@@ -59,14 +59,9 @@ export class Heap {
       const left = right - 1;
       let down = index;
       let child = this.array[down];
-      if (left < this.array.length && this.compare(this.array[left], child) < 0)
-        down = left;
+      if (left < this.array.length && this.compare(this.array[left], child) < 0) down = left;
       child = this.array[left];
-      if (
-        right < this.array.length &&
-        this.compare(this.array[right], child) < 0
-      )
-        child = this.array[(down = right)];
+      if (right < this.array.length && this.compare(this.array[right], child) < 0) child = this.array[(down = right)];
       if (down === index) break;
       this.array[(child.index = index)] = child;
       this.array[(object.index = index = down)] = object;

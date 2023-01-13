@@ -22,10 +22,7 @@ export class Haversine implements GpxDistanceAbstract {
 
     const a =
       Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
-      Math.cos(phiOne) *
-        Math.cos(phiTwo) *
-        Math.sin(deltaLambda / 2) *
-        Math.sin(deltaLambda / 2);
+      Math.cos(phiOne) * Math.cos(phiTwo) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     return toMillimeterPrecision(radius * c);

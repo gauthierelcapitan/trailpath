@@ -27,18 +27,12 @@ export function resample(
 
   const pointsToKeep = evaluatePointsToKeep(result, distanceMethod);
 
-  result.geometry.coordinates = methodMapping[resampleMethod].resample(
-    result.geometry.coordinates,
-    pointsToKeep,
-  );
+  result.geometry.coordinates = methodMapping[resampleMethod].resample(result.geometry.coordinates, pointsToKeep);
 
   return result;
 }
 
-function evaluatePointsToKeep(
-  lineString: Feature<LineString>,
-  distanceMethod: GpxDistanceMethodEnum,
-) {
+function evaluatePointsToKeep(lineString: Feature<LineString>, distanceMethod: GpxDistanceMethodEnum) {
   const coordinatesLength = length(lineString, distanceMethod);
 
   return Math.ceil(coordinatesLength / DISTANCE_BETWEEN_COORDINATES_THRESHOLD);

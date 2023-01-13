@@ -14,18 +14,11 @@ export const methodMapping: {
   VINCENTY: new Vincenty(),
 };
 
-export function distance(
-  coordinateA: Position,
-  coordinateB: Position,
-  method: GpxDistanceMethodEnum,
-): number {
+export function distance(coordinateA: Position, coordinateB: Position, method: GpxDistanceMethodEnum): number {
   return methodMapping[method].distance(coordinateA, coordinateB);
 }
 
-export function length(
-  lineString: Readonly<Feature<LineString>>,
-  method: Readonly<GpxDistanceMethodEnum>,
-): number {
+export function length(lineString: Readonly<Feature<LineString>>, method: Readonly<GpxDistanceMethodEnum>): number {
   const { length } = lineString.geometry.coordinates.reduce<LengthReducer>(
     ({ previousCoord, length }, coord) => {
       if (previousCoord) {
