@@ -3,6 +3,9 @@ import { z } from 'zod';
 import {
   environmentEarthdataSchema
 } from '@trailpath/api/environments/interface/environment-earthdata.interface';
+import {
+  environmentGeonamesSchema
+} from '@trailpath/api/environments/interface/environment-geonames.interface';
 
 export const environmentSchema = z.object({
   production: z.boolean(),
@@ -11,6 +14,7 @@ export const environmentSchema = z.object({
   globalApiPrefix: z.string(),
   database: environmentDatabaseSchema,
   earthdata: environmentEarthdataSchema,
+  geonames: environmentGeonamesSchema,
 });
 
 export type EnvironmentInterface = z.infer<typeof environmentSchema>;

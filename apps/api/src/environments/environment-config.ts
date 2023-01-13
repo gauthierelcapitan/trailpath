@@ -16,6 +16,7 @@ function parseEnvVariables() {
     if (env.GLOBAL_API_PREFIX)
       envVariables.globalApiPrefix = env.GLOBAL_API_PREFIX;
 
+    // Database
     envVariables.database = {};
     if (env.DATABASE_HOST) envVariables.database.host = env.DATABASE_HOST;
     if (env.DATABASE_PORT)
@@ -27,10 +28,15 @@ function parseEnvVariables() {
     if (env.DATABASE_PASSWORD)
       envVariables.database.password = env.DATABASE_PASSWORD;
 
+    // Earthdata
     envVariables.earthdata = {};
     if (env.EARTHDATA_USERNAME) envVariables.earthdata.username = env.EARTHDATA_USERNAME;
     if (env.EARTHDATA_PASSWORD) envVariables.earthdata.password = env.EARTHDATA_PASSWORD;
     if (env.EARTHDATA_TILES_DIRECTORY) envVariables.earthdata.password = env.EARTHDATA_TILES_DIRECTORY;
+
+    // Geonames
+    envVariables.geonames = {};
+    if (env.GEONAMES_USERNAME) envVariables.geonames.username = env.GEONAMES_USERNAME;
   }
   return envVariables;
 }

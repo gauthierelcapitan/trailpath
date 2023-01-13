@@ -1,4 +1,4 @@
-export interface ElevationIgnResponse {
+export interface ElevationIgnResponseInterface {
   elevations: {
     lon: number;
     lat: number;

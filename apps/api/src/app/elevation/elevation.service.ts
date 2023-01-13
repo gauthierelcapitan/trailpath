@@ -12,6 +12,9 @@ import {
 import {
   ReplaceElevationEarthdataService
 } from '@trailpath/api/app/elevation/replace-elevation-earthdata/replace-elevation-earthdata.service';
+import {
+  ReplaceElevationGeonamesService
+} from '@trailpath/api/app/elevation/replace-elevation-geonames/replace-elevation-geonames.service';
 
 @Injectable()
 export class ElevationService {
@@ -19,12 +22,14 @@ export class ElevationService {
   private readonly mapping: { [K in ElevationDatasourceEnum]: (coordinates: Position[], datasource: ElevationDatasourceEnum) => Promise<Position[]>};
 
   constructor(private readonly replaceElevationIgnService: ReplaceElevationIgnService,
+              private readonly replaceElevationGeonamesService: ReplaceElevationGeonamesService,
               private readonly replaceElevationEarthdataService: ReplaceElevationEarthdataService) {
     this.mapping = {
       [ElevationDatasourceEnum.IGN]: (coordinates: Position[], datasource: ElevationDatasourceEnum.IGN) => this.replaceElevationIgnService.replace(coordinates, datasource),
       [ElevationDatasourceEnum.SRTMGL1]: (coordinates: Position[], datasource: ElevationDatasourceEnum.SRTMGL1) => this.replaceElevationEarthdataService.replace(coordinates, datasource),
       [ElevationDatasourceEnum.SRTMGL3]: (coordinates: Position[], datasource: ElevationDatasourceEnum.SRTMGL3) => this.replaceElevationEarthdataService.replace(coordinates, datasource),
-      [ElevationDatasourceEnum.NASADEM]: (coordinates: Position[], datasource: ElevationDatasourceEnum.NASADEM) => this.replaceElevationEarthdataService.replace(coordinates, datasource)
+      [ElevationDatasourceEnum.NASADEM]: (coordinates: Position[], datasource: ElevationDatasourceEnum.NASADEM) => this.replaceElevationEarthdataService.replace(coordinates, datasource),
+      [ElevationDatasourceEnum.ASTER_GDEM]: (coordinates: Position[], datasource: ElevationDatasourceEnum.ASTER_GDEM) => this.replaceElevationGeonamesService.replace(coordinates, datasource)
     }
   }
 

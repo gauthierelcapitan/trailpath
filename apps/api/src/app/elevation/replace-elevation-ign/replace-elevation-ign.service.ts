@@ -8,7 +8,7 @@ import {
   IGN_ELEVATION_BATCH_SIZE,
 } from '@trailpath/api/app/elevation/replace-elevation-ign/replace-elevation-ign.constant';
 import {
-  ElevationIgnResponse,
+  ElevationIgnResponseInterface,
 } from '@trailpath/api/app/elevation/common/elevation-ign-response.interface';
 import {
   ApplicationException,
@@ -36,7 +36,7 @@ export class ReplaceElevationIgnService {
     return (await Promise.all(chunks.map(async chunk => this.fetchIgnElevation(chunk)))).flat(1)
   }
 
-  async fetchIgnElevation(coordinates: Position[]): Promise<Position[]> {
+  private async fetchIgnElevation(coordinates: Position[]): Promise<Position[]> {
 
     const lon = coordinates.map(([lon]) => lon).join('|')
     const lat = coordinates.map(([_lon, lat]) => lat).join('|')
@@ -44,7 +44,7 @@ export class ReplaceElevationIgnService {
     const url = `https://wxs.ign.fr/calcul/alti/rest/elevation.json?lon=${lon}&lat=${lat}`
 
     const { data: { elevations } } = await firstValueFrom(
-      this.httpService.get<ElevationIgnResponse>(url, {
+      this.httpService.get<ElevationIgnResponseInterface>(url, {
         timeout: 10000
       }).pipe(
         catchError((error: AxiosError) => {

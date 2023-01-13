@@ -1,0 +1,1 @@
+export const GEONAMES_ELEVATION_BATCH_SIZE = 20

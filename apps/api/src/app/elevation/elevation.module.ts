@@ -10,10 +10,13 @@ import {
   ReplaceElevationEarthdataService
 } from '@trailpath/api/app/elevation/replace-elevation-earthdata/replace-elevation-earthdata.service';
 import { ConfigModule } from '@nestjs/config';
+import {
+  ReplaceElevationGeonamesService
+} from '@trailpath/api/app/elevation/replace-elevation-geonames/replace-elevation-geonames.service';
 
 @Module({
   imports: [HttpModule, ConfigModule],
-  providers: [ElevationService, ReplaceElevationIgnService, ReplaceElevationEarthdataService],
+  providers: [ElevationService, ReplaceElevationIgnService, ReplaceElevationEarthdataService, ReplaceElevationGeonamesService],
   exports: [ElevationService]
 })
 export class ElevationModule {}

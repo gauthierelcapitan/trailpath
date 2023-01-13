@@ -16,5 +16,8 @@ export const env: Partial<EnvironmentInterface> = {
     username: 'gauthierelcapitan',
     password: 'Test12345',
     tilesDirectory: '/tmp',
+  },
+  geonames: {
+    username: 'gauthierelcapitan',
   }
 };
