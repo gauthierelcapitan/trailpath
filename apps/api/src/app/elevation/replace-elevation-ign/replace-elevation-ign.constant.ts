@@ -1,1 +1,1 @@
-export const IGN_ELEVATION_BATCH_SIZE = 100
+export const IGN_ELEVATION_BATCH_SIZE = 100;

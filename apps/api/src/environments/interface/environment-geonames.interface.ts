@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const environmentGeonamesSchema = z.object({
-  username: z.string()
+  username: z.string(),
 });
 
 export type EnvironmentGeonamesInterface = z.infer<

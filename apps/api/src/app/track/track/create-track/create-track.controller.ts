@@ -52,14 +52,19 @@ export class CreateTrackController {
       throw new BadRequestException('GPX file is missing');
     }
 
-    const { distanceMethod, resampleMethod, elevationMethod, elevationDatasource } = dto;
+    const {
+      distanceMethod,
+      resampleMethod,
+      elevationMethod,
+      elevationDatasource,
+    } = dto;
 
     const uuid = await this.createTrackService.create(
       gpxFile,
       distanceMethod,
       resampleMethod,
       elevationMethod,
-      elevationDatasource
+      elevationDatasource,
     );
 
     return { uuid };

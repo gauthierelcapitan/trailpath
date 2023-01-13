@@ -6,13 +6,13 @@ import { ZodValidationPipe } from '@trailpath/api/app/common/pipe/zod-validation
 import { CoreModule } from '@trailpath/api/app/core/core.module';
 import { DataAccessModule } from '@trailpath/api/app/data-access/data-access.module';
 import { MikroOrmConfigService } from '@trailpath/api/app/data-access/mikro-orm-config.service';
+import { ElevationModule } from '@trailpath/api/app/elevation/elevation.module';
 import { HealthModule } from '@trailpath/api/app/health/health.module';
 import { TrackModule } from '@trailpath/api/app/track/track/track.module';
 import { getEnvConfig } from '@trailpath/api/environments/environment-config';
 import { envValidation } from '@trailpath/api/environments/environment-validator';
 
 import { env } from '../environments/environment';
-import { ElevationModule } from '@trailpath/api/app/elevation/elevation.module';
 
 @Module({
   imports: [

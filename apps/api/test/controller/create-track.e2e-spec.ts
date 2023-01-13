@@ -12,16 +12,12 @@ import { FastifyAdapter } from '@nestjs/platform-fastify/adapters';
 import { NestFastifyApplication } from '@nestjs/platform-fastify/interfaces';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@trailpath/api/app/app.module';
+import { ElevationDatasourceEnum } from '@trailpath/api-interface/elevation/elevation-datasource.enum';
+import { ElevationMethodEnum } from '@trailpath/api-interface/elevation/elevation-method.enum';
 import { CreateTrackDtoInterface } from '@trailpath/api-interface/track/create-track/create-track.dto.interface';
 import { GpxDistanceMethodEnum } from '@trailpath/gpx-distance';
 import { GpxResampleMethodEnum } from '@trailpath/gpx-resample';
 import * as request from 'supertest';
-import {
-  ElevationMethodEnum
-} from '@trailpath/api-interface/elevation/elevation-method.enum';
-import {
-  ElevationDatasourceEnum
-} from '@trailpath/api-interface/elevation/elevation-datasource.enum';
 
 describe('E2E : Create Track', () => {
   let app: INestApplication;
@@ -50,7 +46,7 @@ describe('E2E : Create Track', () => {
       distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
       resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
       elevationMethod: ElevationMethodEnum.NONE,
-      elevationDatasource: ElevationDatasourceEnum.IGN
+      elevationDatasource: ElevationDatasourceEnum.IGN,
     };
 
     const response = await agent
@@ -69,7 +65,7 @@ describe('E2E : Create Track', () => {
       distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
       resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
       elevationMethod: ElevationMethodEnum.NONE,
-      elevationDatasource: ElevationDatasourceEnum.IGN
+      elevationDatasource: ElevationDatasourceEnum.IGN,
     };
 
     const response = await agent
@@ -104,7 +100,7 @@ describe('E2E : Create Track', () => {
       distanceMethod: GpxDistanceMethodEnum.HAVERSINE,
       resampleMethod: GpxResampleMethodEnum.RAMER_DOUGLAS_PEUCKER,
       elevationMethod: ElevationMethodEnum.NONE,
-      elevationDatasource: ElevationDatasourceEnum.IGN
+      elevationDatasource: ElevationDatasourceEnum.IGN,
     };
 
     const response = await agent

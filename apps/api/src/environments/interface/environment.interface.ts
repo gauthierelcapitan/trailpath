@@ -1,11 +1,7 @@
 import { environmentDatabaseSchema } from '@trailpath/api/environments/interface/environment-database.interface';
+import { environmentEarthdataSchema } from '@trailpath/api/environments/interface/environment-earthdata.interface';
+import { environmentGeonamesSchema } from '@trailpath/api/environments/interface/environment-geonames.interface';
 import { z } from 'zod';
-import {
-  environmentEarthdataSchema
-} from '@trailpath/api/environments/interface/environment-earthdata.interface';
-import {
-  environmentGeonamesSchema
-} from '@trailpath/api/environments/interface/environment-geonames.interface';
 
 export const environmentSchema = z.object({
   production: z.boolean(),

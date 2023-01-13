@@ -19,5 +19,5 @@ export const env: Partial<EnvironmentInterface> = {
   },
   geonames: {
     username: 'gauthierelcapitan',
-  }
+  },
 };

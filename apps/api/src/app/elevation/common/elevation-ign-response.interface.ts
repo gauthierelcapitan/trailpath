@@ -1,8 +1,8 @@
 export interface ElevationIgnResponseInterface {
   elevations: {
-    lon: number;
+    acc: number;
     lat: number;
+    lon: number;
     z: number;
-    acc: number
-  }[]
+  }[];
 }

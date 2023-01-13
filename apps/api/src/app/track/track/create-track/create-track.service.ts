@@ -1,27 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import {
-  UploadedFileInterface,
-} from '@trailpath/api/app/common/interface/uploaded-file.interface';
-import {
-  TrackRepository,
-} from '@trailpath/api/app/data-access/entity/track/track.entity.repository';
+import { UploadedFileInterface } from '@trailpath/api/app/common/interface/uploaded-file.interface';
+import { TrackRepository } from '@trailpath/api/app/data-access/entity/track/track.entity.repository';
+import { ElevationService } from '@trailpath/api/app/elevation/elevation.service';
+import { ElevationDatasourceEnum } from '@trailpath/api-interface/elevation/elevation-datasource.enum';
+import { ElevationMethodEnum } from '@trailpath/api-interface/elevation/elevation-method.enum';
 import { GpxDistanceMethodEnum, length } from '@trailpath/gpx-distance';
 import { GpxResampleMethodEnum, resample } from '@trailpath/gpx-resample';
 import { gpxToTrack } from '@trailpath/gpx-track';
-import {
-  ElevationService,
-} from '@trailpath/api/app/elevation/elevation.service';
-import {
-  ElevationMethodEnum,
-} from '@trailpath/api-interface/elevation/elevation-method.enum';
-import {
-  ElevationDatasourceEnum,
-} from '@trailpath/api-interface/elevation/elevation-datasource.enum';
 
 @Injectable()
 export class CreateTrackService {
-  constructor(private readonly trackRepository: TrackRepository,
-              private readonly elevationService: ElevationService) {}
+  constructor(
+    private readonly trackRepository: TrackRepository,
+    private readonly elevationService: ElevationService,
+  ) {}
 
   async create(
     file: UploadedFileInterface,
@@ -44,7 +36,8 @@ export class CreateTrackService {
     trackResampled.geometry.coordinates = await this.elevationService.replace(
       trackResampled.geometry.coordinates,
       elevationMethod,
-      elevationDatasource)
+      elevationDatasource,
+    );
 
     const distance = length(trackResampled, distanceMethod);
 
