@@ -1,11 +1,4 @@
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-} from '@jest/globals';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from '@jest/globals';
 import { Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import { FastifyAdapter } from '@nestjs/platform-fastify/adapters';
@@ -29,9 +22,7 @@ describe('E2E : Create Track', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication<NestFastifyApplication>(
-      new FastifyAdapter(),
-    );
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
 
     orm = moduleFixture.get<MikroORM>(MikroORM);
 
@@ -68,10 +59,7 @@ describe('E2E : Create Track', () => {
       elevationDatasource: ElevationDatasourceEnum.IGN,
     };
 
-    const response = await agent
-      .post(`/tracks`)
-      .set('Content-Type', 'multipart/form-data')
-      .field(createTrackDto);
+    const response = await agent.post(`/tracks`).set('Content-Type', 'multipart/form-data').field(createTrackDto);
 
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
   });

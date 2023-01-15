@@ -36,46 +36,25 @@ class ColorPalette {
     this.baseColor = hsl(this.hue, this.saturation, this.lightness);
 
     // Define a complimentary color, 30 degrees away from the base
-    this.complimentaryColor1 = hsl(
-      this.complimentaryHue1,
-      this.saturation,
-      this.lightness,
-    );
+    this.complimentaryColor1 = hsl(this.complimentaryHue1, this.saturation, this.lightness);
 
     // Define a second complimentary color, 60 degrees away from the base
-    this.complimentaryColor2 = hsl(
-      this.complimentaryHue2,
-      this.saturation,
-      this.lightness,
-    );
+    this.complimentaryColor2 = hsl(this.complimentaryHue2, this.saturation, this.lightness);
 
     // Store the color choices in an array so that a random one can be picked later
-    this.colorChoices = [
-      this.baseColor,
-      this.complimentaryColor1,
-      this.complimentaryColor2,
-    ];
+    this.colorChoices = [this.baseColor, this.complimentaryColor1, this.complimentaryColor2];
   }
 
   randomColor(): number {
     // Pick a random color
-    return this.colorChoices[~~random(0, this.colorChoices.length)].replace(
-      '#',
-      '0x',
-    ) as unknown as number;
+    return this.colorChoices[~~random(0, this.colorChoices.length)].replace('#', '0x') as unknown as number;
   }
 
   setCustomProperties() {
     // Set CSS custom properties so that the colors defined here can be used throughout the UI
     document.documentElement.style.setProperty('--hue', this.hue.toString());
-    document.documentElement.style.setProperty(
-      '--hue-complimentary1',
-      this.complimentaryHue1.toString(),
-    );
-    document.documentElement.style.setProperty(
-      '--hue-complimentary2',
-      this.complimentaryHue2.toString(),
-    );
+    document.documentElement.style.setProperty('--hue-complimentary1', this.complimentaryHue1.toString());
+    document.documentElement.style.setProperty('--hue-complimentary2', this.complimentaryHue2.toString());
   }
 }
 

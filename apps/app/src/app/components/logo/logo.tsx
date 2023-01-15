@@ -7,19 +7,9 @@ interface LogoProps {
   width?: number;
 }
 
-export function Logo({
-  width = 408,
-  height = 50,
-  color = theme.color.imperialPurple[500],
-}: LogoProps) {
+export function Logo({ width = 408, height = 50, color = theme.color.imperialPurple[500] }: LogoProps) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 408 50"
-      height={height}
-      width={width}
-      version="1.1"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 50" height={height} width={width} version="1.1">
       <defs>
         <linearGradient id="gradient1" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#fd0d79" />

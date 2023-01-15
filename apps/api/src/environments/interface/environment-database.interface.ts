@@ -8,6 +8,4 @@ export const environmentDatabaseSchema = z.object({
   password: z.string(),
 });
 
-export type EnvironmentDatabaseInterface = z.infer<
-  typeof environmentDatabaseSchema
->;
+export type EnvironmentDatabaseInterface = z.infer<typeof environmentDatabaseSchema>;

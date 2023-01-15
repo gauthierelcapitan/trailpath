@@ -1,8 +1,4 @@
-import {
-  glassBackground,
-  glassBackgroundHover,
-  theme,
-} from '@trailpath/theme.css';
+import { glassBackground, glassBackgroundHover, theme } from '@trailpath/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const wrapper = style([

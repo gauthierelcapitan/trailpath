@@ -10,10 +10,7 @@ import { gpxToTrack } from '@trailpath/gpx-track';
 
 @Injectable()
 export class CreateTrackService {
-  constructor(
-    private readonly trackRepository: TrackRepository,
-    private readonly elevationService: ElevationService,
-  ) {}
+  constructor(private readonly trackRepository: TrackRepository, private readonly elevationService: ElevationService) {}
 
   async create(
     file: UploadedFileInterface,
@@ -27,11 +24,7 @@ export class CreateTrackService {
 
     const track = gpxToTrack(gpxString, filename);
 
-    const trackResampled = resample(
-      track.track,
-      resampleMethod,
-      distanceMethod,
-    );
+    const trackResampled = resample(track.track, resampleMethod, distanceMethod);
 
     trackResampled.geometry.coordinates = await this.elevationService.replace(
       trackResampled.geometry.coordinates,

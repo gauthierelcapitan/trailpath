@@ -1,20 +1,6 @@
 import { FileInterceptor } from '@nest-lab/fastify-multer';
-import {
-  BadRequestException,
-  Body,
-  HttpCode,
-  HttpStatus,
-  Post,
-  UploadedFile,
-  UseInterceptors,
-} from '@nestjs/common';
-import {
-  ApiBadRequestResponse,
-  ApiBody,
-  ApiConsumes,
-  ApiCreatedResponse,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { BadRequestException, Body, HttpCode, HttpStatus, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 import { multerOptions } from '@trailpath/api/app/common/config/multer-options.config';
 import { MimeExtEnum } from '@trailpath/api/app/common/enum/mime-ext.enum';
 import { TrackDecorator } from '@trailpath/api/app/track/track/common/decorator/track.decorator';
@@ -30,8 +16,7 @@ export class CreateTrackController {
   @Post()
   @ApiOperation({
     summary: 'Create a track from a GPX file.',
-    description:
-      'Create a track from a GPX file an responding with the corresponding UUID.',
+    description: 'Create a track from a GPX file an responding with the corresponding UUID.',
   })
   @ApiCreatedResponse({
     description: 'Create a track using a GPX file and return its UUID.',
@@ -44,20 +29,12 @@ export class CreateTrackController {
   @ApiBody({ type: CreateTrackDto })
   @UseInterceptors(FileInterceptor('gpxFile', multerOptions([MimeExtEnum.GPX])))
   @HttpCode(HttpStatus.CREATED)
-  async create(
-    @Body() dto: CreateTrackDto,
-    @UploadedFile() gpxFile,
-  ): Promise<CreateTrackResponseInterface> {
+  async create(@Body() dto: CreateTrackDto, @UploadedFile() gpxFile): Promise<CreateTrackResponseInterface> {
     if (!gpxFile) {
       throw new BadRequestException('GPX file is missing');
     }
 
-    const {
-      distanceMethod,
-      resampleMethod,
-      elevationMethod,
-      elevationDatasource,
-    } = dto;
+    const { distanceMethod, resampleMethod, elevationMethod, elevationDatasource } = dto;
 
     const uuid = await this.createTrackService.create(
       gpxFile,

@@ -1,10 +1,5 @@
 import { ZodDtoStatic } from '@anatine/zod-nestjs';
-import {
-  ArgumentMetadata,
-  BadRequestException,
-  Injectable,
-  PipeTransform,
-} from '@nestjs/common';
+import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import { SafeParseError } from 'zod';
 
 @Injectable()
@@ -17,9 +12,7 @@ export class ZodValidationPipe implements PipeTransform {
 
       if (!parseResult.success) {
         const { error } = parseResult as SafeParseError<unknown>;
-        const message = error.errors
-          .map((error) => `${error.path.join('.')}: ${error.message}`)
-          .join(', ');
+        const message = error.errors.map((error) => `${error.path.join('.')}: ${error.message}`).join(', ');
 
         throw new BadRequestException(`Input validation failed: ${message}`);
       }

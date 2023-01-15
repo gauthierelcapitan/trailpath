@@ -19,10 +19,7 @@ export class TrackView implements TrackInterface {
   @ApiProperty({ type: TrackMetadataView })
   metadata: TrackMetadataView;
 
-  constructor(
-    id: string,
-    { filename, track, points, metadata }: TrackInterface,
-  ) {
+  constructor(id: string, { filename, track, points, metadata }: TrackInterface) {
     this.id = id;
     this.filename = filename;
     this.track = track;

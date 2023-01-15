@@ -1,10 +1,4 @@
-import {
-  CallHandler,
-  ExecutionContext,
-  Injectable,
-  Logger,
-  NestInterceptor,
-} from '@nestjs/common';
+import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { EnvironmentInterface } from '@trailpath/api/environments/interface/environment.interface';
 import { FastifyReply, FastifyRequest } from 'fastify';
@@ -15,15 +9,9 @@ import { tap } from 'rxjs/operators';
 export class LogInterceptor implements NestInterceptor {
   private readonly globalApiPrefix: string;
 
-  constructor(
-    private readonly configService: ConfigService,
-    private readonly logger: Logger,
-  ) {
+  constructor(private readonly configService: ConfigService, private readonly logger: Logger) {
     this.logger = new Logger(LogInterceptor.name);
-    this.globalApiPrefix =
-      this.configService.get<EnvironmentInterface['globalApiPrefix']>(
-        'globalApiPrefix',
-      ) ?? 'api';
+    this.globalApiPrefix = this.configService.get<EnvironmentInterface['globalApiPrefix']>('globalApiPrefix') ?? 'api';
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -37,11 +25,7 @@ export class LogInterceptor implements NestInterceptor {
 
     const startTimestamp = performance.now();
     const observable = next.handle();
-    return observable.pipe(
-      tap(() =>
-        this.logger.log(this.buildResponseLog(context, startTimestamp)),
-      ),
-    );
+    return observable.pipe(tap(() => this.logger.log(this.buildResponseLog(context, startTimestamp))));
   }
 
   buildResponseLog(context: ExecutionContext, startTimestamp: number) {

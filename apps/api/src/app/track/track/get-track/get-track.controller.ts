@@ -1,9 +1,5 @@
 import { Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
-import {
-  ApiNotFoundResponse,
-  ApiOkResponse,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { TrackDecorator } from '@trailpath/api/app/track/track/common/decorator/track.decorator';
 import { GetTrackResponse } from '@trailpath/api/app/track/track/get-track/get-track.response';
 import { GetTrackResponseInterface } from '@trailpath/api-interface/track/get-track/get-track.response.interface';

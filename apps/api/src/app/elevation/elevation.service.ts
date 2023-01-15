@@ -21,29 +21,15 @@ export class ElevationService {
     private readonly replaceElevationEarthdataService: ReplaceElevationEarthdataService,
   ) {
     this.mapping = {
-      [ElevationDatasourceEnum.IGN]: (
-        coordinates: Position[],
-        datasource: ElevationDatasourceEnum.IGN,
-      ) => this.replaceElevationIgnService.replace(coordinates, datasource),
-      [ElevationDatasourceEnum.SRTMGL1]: (
-        coordinates: Position[],
-        datasource: ElevationDatasourceEnum.SRTMGL1,
-      ) =>
+      [ElevationDatasourceEnum.IGN]: (coordinates: Position[], datasource: ElevationDatasourceEnum.IGN) =>
+        this.replaceElevationIgnService.replace(coordinates, datasource),
+      [ElevationDatasourceEnum.SRTMGL1]: (coordinates: Position[], datasource: ElevationDatasourceEnum.SRTMGL1) =>
         this.replaceElevationEarthdataService.replace(coordinates, datasource),
-      [ElevationDatasourceEnum.SRTMGL3]: (
-        coordinates: Position[],
-        datasource: ElevationDatasourceEnum.SRTMGL3,
-      ) =>
+      [ElevationDatasourceEnum.SRTMGL3]: (coordinates: Position[], datasource: ElevationDatasourceEnum.SRTMGL3) =>
         this.replaceElevationEarthdataService.replace(coordinates, datasource),
-      [ElevationDatasourceEnum.NASADEM]: (
-        coordinates: Position[],
-        datasource: ElevationDatasourceEnum.NASADEM,
-      ) =>
+      [ElevationDatasourceEnum.NASADEM]: (coordinates: Position[], datasource: ElevationDatasourceEnum.NASADEM) =>
         this.replaceElevationEarthdataService.replace(coordinates, datasource),
-      [ElevationDatasourceEnum.ASTER_GDEM]: (
-        coordinates: Position[],
-        datasource: ElevationDatasourceEnum.ASTER_GDEM,
-      ) =>
+      [ElevationDatasourceEnum.ASTER_GDEM]: (coordinates: Position[], datasource: ElevationDatasourceEnum.ASTER_GDEM) =>
         this.replaceElevationGeonamesService.replace(coordinates, datasource),
     };
   }
@@ -64,10 +50,7 @@ export class ElevationService {
     }
   }
 
-  private async replaceMissing(
-    coordinates: Readonly<Position[]>,
-    datasource: ElevationDatasourceEnum,
-  ) {
+  private async replaceMissing(coordinates: Readonly<Position[]>, datasource: ElevationDatasourceEnum) {
     const result = JSON.parse(JSON.stringify(coordinates));
 
     const missingIndex: { index: number; position: Position }[] = coordinates

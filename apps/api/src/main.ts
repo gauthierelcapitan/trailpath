@@ -1,10 +1,7 @@
 import { INestApplication, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import {
   SWAGGER_API_PATH,
@@ -21,19 +18,13 @@ async function bootstrap() {
     logger: false,
   };
 
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
-    new FastifyAdapter(fastifyOptions),
-  );
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(fastifyOptions));
 
   app.enableShutdownHooks();
   app.enableCors();
 
   const configService: ConfigService = app.get(ConfigService);
-  const globalApiPrefix =
-    configService.get<EnvironmentInterface['globalApiPrefix']>(
-      'globalApiPrefix',
-    ) ?? 'api';
+  const globalApiPrefix = configService.get<EnvironmentInterface['globalApiPrefix']>('globalApiPrefix') ?? 'api';
 
   app.setGlobalPrefix(globalApiPrefix);
   setupOpenApi(app);
@@ -43,12 +34,8 @@ async function bootstrap() {
     if (err) {
       Logger.error(err);
     }
-    const baseUrl =
-      configService.get<EnvironmentInterface['baseUrl']>('baseUrl') ??
-      'http://localhost';
-    Logger.log(
-      `🚀 Application is running on: ${baseUrl}:${port}/${globalApiPrefix}`,
-    );
+    const baseUrl = configService.get<EnvironmentInterface['baseUrl']>('baseUrl') ?? 'http://localhost';
+    Logger.log(`🚀 Application is running on: ${baseUrl}:${port}/${globalApiPrefix}`);
   });
 }
 

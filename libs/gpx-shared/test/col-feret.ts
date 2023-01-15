@@ -11,7 +11,7 @@ export const colFeretGeoJson: Feature<LineString> = {
           45.87148,
           1779.36
         ],
-          [
+       [
             7.05389,
             45.8715,
             1777.19

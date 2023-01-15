@@ -20,22 +20,13 @@ export class ReplaceElevationIgnService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async replace(
-    coordinates: Position[],
-    _datasource: ElevationDatasourceEnum.IGN,
-  ): Promise<Position[]> {
+  async replace(coordinates: Position[], _datasource: ElevationDatasourceEnum.IGN): Promise<Position[]> {
     const chunks = chunk(coordinates, IGN_ELEVATION_BATCH_SIZE);
 
-    return (
-      await Promise.all(
-        chunks.map(async (chunk) => this.fetchIgnElevation(chunk)),
-      )
-    ).flat(1);
+    return (await Promise.all(chunks.map(async (chunk) => this.fetchIgnElevation(chunk)))).flat(1);
   }
 
-  private async fetchIgnElevation(
-    coordinates: Position[],
-  ): Promise<Position[]> {
+  private async fetchIgnElevation(coordinates: Position[]): Promise<Position[]> {
     const lon = coordinates.map(([lon]) => lon).join('|');
     const lat = coordinates.map(([_lon, lat]) => lat).join('|');
 
@@ -51,17 +42,11 @@ export class ReplaceElevationIgnService {
         .pipe(
           catchError((error: AxiosError) => {
             this.logger.error(error.response.data);
-            throw new ApplicationException(
-              `Error ${error.response.data} while fetching IGN elevation ${url}.`,
-            );
+            throw new ApplicationException(`Error ${error.response.data} while fetching IGN elevation ${url}.`);
           }),
         ),
     );
 
-    return coordinates.map(([lon, lat], index) => [
-      lon,
-      lat,
-      Math.round(elevations[index].z * 10) / 10,
-    ]);
+    return coordinates.map(([lon, lat], index) => [lon, lat, Math.round(elevations[index].z * 10) / 10]);
   }
 }

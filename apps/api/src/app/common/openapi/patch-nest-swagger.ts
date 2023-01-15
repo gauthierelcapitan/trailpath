@@ -19,8 +19,7 @@ export const patchNestjsSwagger = (
   // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/naming-convention
   const { SchemaObjectFactory } = schemaObjectFactoryModule;
 
-  const orgExploreModelSchema =
-    SchemaObjectFactory.prototype.exploreModelSchema;
+  const orgExploreModelSchema = SchemaObjectFactory.prototype.exploreModelSchema;
 
   SchemaObjectFactory.prototype.exploreModelSchema = function (
     type: Type<unknown> | Function | any,

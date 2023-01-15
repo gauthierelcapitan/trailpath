@@ -8,10 +8,7 @@ import { Position } from 'geojson';
 import { catchError, firstValueFrom, from } from 'rxjs';
 import { SyncTileSet } from 'srtm-elevation';
 
-type Datasources =
-  | ElevationDatasourceEnum.SRTMGL3
-  | ElevationDatasourceEnum.SRTMGL1
-  | ElevationDatasourceEnum.NASADEM;
+type Datasources = ElevationDatasourceEnum.SRTMGL3 | ElevationDatasourceEnum.SRTMGL1 | ElevationDatasourceEnum.NASADEM;
 
 /**
  * Class that handle elevation replacement in coordinates using NASA Earthdata.
@@ -38,12 +35,8 @@ export class ReplaceElevationEarthdataService {
 
   constructor(private readonly configService: ConfigService) {}
 
-  async replace(
-    coordinates: Position[],
-    datasource: Datasources,
-  ): Promise<Position[]> {
-    const earthdata =
-      this.configService.get<EnvironmentEarthdataInterface>('earthdata');
+  async replace(coordinates: Position[], datasource: Datasources): Promise<Position[]> {
+    const earthdata = this.configService.get<EnvironmentEarthdataInterface>('earthdata');
     const { topLeft, bottomRight } = this.getOutermostCoordinates(coordinates);
 
     const tilesDirectory = `${earthdata.tilesDirectory}/${datasource}`;
@@ -65,8 +58,7 @@ export class ReplaceElevationEarthdataService {
               } else {
                 resolve(
                   coordinates.map(([lon, lat]) => {
-                    const ele =
-                      Math.round(tileSet.getElevation([lat, lon]) * 10) / 10;
+                    const ele = Math.round(tileSet.getElevation([lat, lon]) * 10) / 10;
 
                     return [lon, lat, ele];
                   }),
@@ -83,9 +75,7 @@ export class ReplaceElevationEarthdataService {
       ).pipe(
         catchError((error) => {
           this.logger.error(error);
-          throw new ApplicationException(
-            `Error while fetching Earthdata elevation : ${error}.`,
-          );
+          throw new ApplicationException(`Error while fetching Earthdata elevation : ${error}.`);
         }),
       ),
     );

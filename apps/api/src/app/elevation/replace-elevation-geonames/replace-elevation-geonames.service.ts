@@ -21,33 +21,19 @@ import { catchError, firstValueFrom } from 'rxjs';
 export class ReplaceElevationGeonamesService {
   private readonly logger = new Logger(ReplaceElevationGeonamesService.name);
 
-  constructor(
-    private readonly configService: ConfigService,
-    private readonly httpService: HttpService,
-  ) {}
+  constructor(private readonly configService: ConfigService, private readonly httpService: HttpService) {}
 
-  async replace(
-    coordinates: Position[],
-    _datasource: ElevationDatasourceEnum.ASTER_GDEM,
-  ): Promise<Position[]> {
+  async replace(coordinates: Position[], _datasource: ElevationDatasourceEnum.ASTER_GDEM): Promise<Position[]> {
     const chunks = chunk(coordinates, GEONAMES_ELEVATION_BATCH_SIZE);
 
-    const geonames =
-      this.configService.get<EnvironmentGeonamesInterface>('geonames');
+    const geonames = this.configService.get<EnvironmentGeonamesInterface>('geonames');
 
-    return (
-      await Promise.all(
-        chunks.map(async (chunk) =>
-          this.fetchGeonamesElevation(chunk, geonames.username),
-        ),
-      )
-    ).flat(1);
+    return (await Promise.all(chunks.map(async (chunk) => this.fetchGeonamesElevation(chunk, geonames.username)))).flat(
+      1,
+    );
   }
 
-  private async fetchGeonamesElevation(
-    coordinates: Position[],
-    username: string,
-  ): Promise<Position[]> {
+  private async fetchGeonamesElevation(coordinates: Position[], username: string): Promise<Position[]> {
     const lon = coordinates.map(([lon]) => lon).join(',');
     const lat = coordinates.map(([_lon, lat]) => lat).join(',');
 
@@ -61,17 +47,11 @@ export class ReplaceElevationGeonamesService {
         .pipe(
           catchError((error: AxiosError) => {
             this.logger.error(error.response.data);
-            throw new ApplicationException(
-              `Error ${error.response.data} while fetching GeoNames elevation ${url}.`,
-            );
+            throw new ApplicationException(`Error ${error.response.data} while fetching GeoNames elevation ${url}.`);
           }),
         ),
     );
 
-    return coordinates.map(([lon, lat], index) => [
-      lon,
-      lat,
-      Math.round(data.geonames[index].astergdem * 10) / 10,
-    ]);
+    return coordinates.map(([lon, lat], index) => [lon, lat, Math.round(data.geonames[index].astergdem * 10) / 10]);
   }
 }

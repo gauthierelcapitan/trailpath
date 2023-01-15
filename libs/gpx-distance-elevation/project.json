@@ -8,7 +8,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/gpx-distance-elevation/**/*.ts"]
+        "lintFilePatterns": ["libs/gpx-distance-elevation/**/*.ts"],
+        "fix": true
       }
     },
     "test": {

@@ -2,11 +2,7 @@ import { ApiBody } from '@nestjs/swagger';
 
 export const ApiBodyFile =
   (fileName = 'file', body): MethodDecorator =>
-  (
-    target: Record<string, unknown>,
-    propertyKey: string,
-    descriptor: PropertyDescriptor,
-  ) => {
+  (target: Record<string, unknown>, propertyKey: string, descriptor: PropertyDescriptor) => {
     ApiBody({
       schema: {
         type: 'object',

@@ -1,10 +1,4 @@
-import {
-  DateTimeType,
-  Entity,
-  EntityRepositoryType,
-  PrimaryKey,
-  Property,
-} from '@mikro-orm/core';
+import { DateTimeType, Entity, EntityRepositoryType, PrimaryKey, Property } from '@mikro-orm/core';
 import { TrackRepository } from '@trailpath/api/app/data-access/entity/track/track.entity.repository';
 import { v4 } from 'uuid';
 

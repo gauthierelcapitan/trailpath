@@ -37,8 +37,7 @@ function wave(
     points.push({ x, y });
   }
 
-  const pathData =
-    spline(points, 1, false) + `L ${end.x} ${height} L ${start.x} ${height} Z`;
+  const pathData = spline(points, 1, false) + `L ${end.x} ${height} L ${start.x} ${height} Z`;
 
   svg.path(pathData).attr('fill', gradient);
 }
@@ -56,14 +55,11 @@ export function WaveBackground() {
       const colors = base.analogous(6);
 
       // noinspection TypeScriptValidateJSTypes
-      svg
-        .rect(width, height)
-        .fill(random(colors).clone().darken(40).toString());
+      svg.rect(width, height).fill(random(colors).clone().darken(40).toString());
 
       for (let i = 0; i < numWaves; i++) {
         const randomOffset = random(-50, 50);
-        const originY =
-          map(i, 0, numWaves, -height / 2, height / 3) + randomOffset;
+        const originY = map(i, 0, numWaves, -height / 2, height / 3) + randomOffset;
         const endY = map(i, 0, numWaves, 0, 1000) + randomOffset;
 
         const color = random(colors).clone();
@@ -81,13 +77,7 @@ export function WaveBackground() {
 
         gradient.from(0.5, 0).to(0, 1);
 
-        wave(
-          svg,
-          height,
-          { x: 0, y: originY },
-          { x: width, y: endY },
-          gradient,
-        );
+        wave(svg, height, { x: 0, y: originY }, { x: width, y: endY }, gradient);
       }
 
       initializedRef.current = true;
@@ -96,11 +86,7 @@ export function WaveBackground() {
 
   return (
     <div className={canvasWrapper}>
-      <svg
-        className={['canvas', canvas].join(' ')}
-        viewBox="0 0 1920 1080"
-        preserveAspectRatio="xMaxYMid slice"
-      />
+      <svg className={['canvas', canvas].join(' ')} viewBox="0 0 1920 1080" preserveAspectRatio="xMaxYMid slice" />
     </div>
   );
 }

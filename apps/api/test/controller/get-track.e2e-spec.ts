@@ -16,9 +16,7 @@ describe('E2E : Get Track', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication<NestFastifyApplication>(
-      new FastifyAdapter(),
-    );
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
 
     orm = moduleFixture.get<MikroORM>(MikroORM);
 

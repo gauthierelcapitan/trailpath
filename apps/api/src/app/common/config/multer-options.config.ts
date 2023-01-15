@@ -12,15 +12,9 @@ export const multerOptions = (extNames: MimeExtEnum[]) => {
       // Limit size to 10M
       fileSize: 1048576 * 10,
     },
-    fileFilter: (
-      req: FastifyRequest,
-      file: UploadedFileInterface,
-      cb: FileFilterCallback,
-    ) => {
+    fileFilter: (req: FastifyRequest, file: UploadedFileInterface, cb: FileFilterCallback) => {
       if (
-        extNames
-          .map((extName) => extName.toString().toLowerCase())
-          .includes(extname(file.originalname.toLowerCase()))
+        extNames.map((extName) => extName.toString().toLowerCase()).includes(extname(file.originalname.toLowerCase()))
       ) {
         cb(null, true);
       } else {
@@ -28,9 +22,7 @@ export const multerOptions = (extNames: MimeExtEnum[]) => {
           new HttpException(
             {
               statusCode: HttpStatus.BAD_REQUEST,
-              message: `Unsupported file type ${extname(
-                file.originalname.toLowerCase(),
-              )}`,
+              message: `Unsupported file type ${extname(file.originalname.toLowerCase())}`,
             },
             HttpStatus.BAD_REQUEST,
           ),

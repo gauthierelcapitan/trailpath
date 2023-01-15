@@ -6,6 +6,4 @@ export const environmentEarthdataSchema = z.object({
   tilesDirectory: z.string(),
 });
 
-export type EnvironmentEarthdataInterface = z.infer<
-  typeof environmentEarthdataSchema
->;
+export type EnvironmentEarthdataInterface = z.infer<typeof environmentEarthdataSchema>;

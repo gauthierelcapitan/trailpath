@@ -1,10 +1,4 @@
-import {
-  ArgumentsHost,
-  Catch,
-  HttpException,
-  InternalServerErrorException,
-  Logger,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, HttpException, InternalServerErrorException, Logger } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { FastifyRequest } from 'fastify';
 
@@ -30,9 +24,7 @@ export class ExceptionsFilter extends BaseExceptionFilter {
 
     // Build and print error/warn message log.
     if (httpException) {
-      const { id, ip, method, url, query, headers } = host
-        .switchToHttp()
-        .getRequest<FastifyRequest>();
+      const { id, ip, method, url, query, headers } = host.switchToHttp().getRequest<FastifyRequest>();
 
       const userAgent = headers['user-agent'] ?? '';
       const queryString = JSON.stringify(query);
@@ -51,15 +43,11 @@ export class ExceptionsFilter extends BaseExceptionFilter {
   }
 
   private errorToHttpException(error: Error): HttpException {
-    const exception = new InternalServerErrorException(
-      `Internal Server Error -- ${error.message}`,
-      {
-        cause: error,
-      },
-    );
+    const exception = new InternalServerErrorException(`Internal Server Error -- ${error.message}`, {
+      cause: error,
+    });
 
-    exception.stack =
-      exception.stack.split('\n').slice(0, 2).join('\n') + '\n' + error.stack;
+    exception.stack = exception.stack.split('\n').slice(0, 2).join('\n') + '\n' + error.stack;
     return exception;
   }
 }
